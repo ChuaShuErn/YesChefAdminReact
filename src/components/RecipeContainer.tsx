@@ -20,6 +20,7 @@ const RecipeContainer = ({recipes}:schema) => {
           courseType={recipe.courseType}
           difficulty={recipe.difficulty}
           imageURL={recipe.imageURL}
+          id={recipe.id}
         />
       ))}
     </ul>

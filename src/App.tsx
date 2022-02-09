@@ -22,10 +22,10 @@ export default function App() {
             {/* <Route path="/ingredientForm" element={<IngredientForm />} /> */}
             <Route path="/recipes" element={<ListRecipeComponent />} />
             <Route path="/createRecipe" element={<CreateRecipeComponent />} />
+            <Route path="/updateRecipe/:id" element={<CreateRecipeComponent />} />
             {/* <Route path="/preparationStepsForm" element={<PreparationStepsForm />} /> */}
             <Route path="/adminDashboard" element={<AdminDashboard />} />
             
-
           </Routes>
         </div>
         <FooterComponent />

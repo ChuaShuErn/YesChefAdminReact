@@ -21,27 +21,6 @@ function ListRecipeComponent () {
                 throw new Error('Something went wrong!');
             }
             const data = await response.json() as RecipeType[];
-            //to fetch sub-document, for example nutrition-calories -> data.nutrition.map ((nutritionData) => { return fat: recipeData.fat,...})
-
-            // const transformedRecipes = data.map((recipeData) => {
-            //     return {
-            //         id: recipeData.id,
-            //         name: recipeData.name,
-            //         description: recipeData.description,
-            //         imageURL: recipeData.imageURL,
-            //         cuisineType: recipeData.cuisineType,
-            //         courseType: recipeData.courseType,
-            //         technique: recipeData.technique,
-            //         prepTime: recipeData.prepTime,
-            //         noOfServings: recipeData.noOfServings,
-            //         calories: recipeData.calories,
-            //         ingredients: recipeData.ingredients,
-            //         prepSteps: recipeData.prepSteps,
-            //         nutrition: recipeData.nutrition,
-            //         userReviews: recipeData.userReviews,
-            //         difficulty: recipeData.difficulty     
-            //     };
-            // });
 
             setRecipes(data);
         } catch (error: any){

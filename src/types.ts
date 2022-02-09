@@ -24,11 +24,6 @@ export interface RecipeType {
         unit:string
 
     }[];
-    userReviews:{
-        userEmail:string;
-        rating:number;
-        description:string;
 
-    }[];
 
 }

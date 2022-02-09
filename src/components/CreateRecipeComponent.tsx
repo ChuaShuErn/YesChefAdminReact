@@ -1,13 +1,17 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 
 import RecipeService from '../services/RecipeService';
 import IngredientForm from './IngredientForm';
 import PreparationStepsForm from './PreparationStepsForm';
-import {defaultInputFields} from '../utils/IngredientInputField'
+import { defaultInputFields } from '../utils/IngredientInputField'
 import LabelsDropDownForm from './DifficultyDropDownForm';
 import { v4 as uuidv4 } from 'uuid';
+import { useParams } from 'react-router-dom';
+
 
 function CreateRecipeComponent() {
+    const recipeId = useParams().id
+
     const [inputFields, setInputFields] = useState([
         defaultInputFields()
     ])
@@ -15,14 +19,39 @@ function CreateRecipeComponent() {
     //not clear that this is the ingredient inputFields
     const [prepStepField, setprepStepField] = useState(['']);
 
-    const[difficultyLabel, setDifficultyLabel] = useState(['']);
+    const [difficultyLabel, setDifficultyLabel] = useState(['']);
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
+    useEffect(() => {
+        async function fetchRecipe() {
+            if (!recipeId) return;
+            try {
+                const { data } = await RecipeService.getOneRecipe(recipeId)
+
+
+                setName(data.name);
+                setDescription(data.description);
+                setInputFields(data.ingredients);
+                setDifficultyLabel(data.difficulty);
+                setprepStepField(data.prepSteps);
+    
+                // console.log(data)
+            }
+            catch (err) {
+                console.error(err);
+            }
+        }
+
+        fetchRecipe()
+    }, [])
+
+
+
     const handlePrepStepFieldChange = (prepSteps: string[]) => {
         setprepStepField(prepSteps)
-    } 
+    }
 
     const changeRecipeNameHandler = (event: any) => {
         setName(event.target.value);
@@ -40,13 +69,23 @@ function CreateRecipeComponent() {
             ingredients: inputFields,
             difficulty: difficultyLabel,
             prepSteps: prepStepField,
+            imageURL: [],
+            courseType: '',
+            cuisineType: [],
+            technique: [],
+            tags: [],
+            nutrition: [],
+            noOfServings: 0,
+            calories: 0,
+            prepTime: 0
         }
 
-        //props.setRecipes([recipe, ...props.recipes])  
-        console.log(recipe);
-
-        //RecipeService.createRecipe(recipe);
-
+        if (!recipeId){
+            RecipeService.createRecipe(recipe);
+        }
+        else{
+            RecipeService.updateRecipe(recipeId, recipe);
+        }
     }
 
 
@@ -80,9 +119,11 @@ function CreateRecipeComponent() {
                                     value={description} onChange={changeDescriptionHandler} />
                             </div>
                             <IngredientForm inputFields={inputFields} setInputFields={setInputFields} />
-                            <PreparationStepsForm prepStepField={prepStepField} onPrepStepFieldChange={handlePrepStepFieldChange}/>
-                            <LabelsDropDownForm difficultyLabel ={difficultyLabel[0]} setDifficultyLabel = {setDifficultyLabel}/>
-                            <button className="btn btn-success" type="submit" onClick={saveRecipe}>Save</button>
+                            <PreparationStepsForm prepStepField={prepStepField} onPrepStepFieldChange={handlePrepStepFieldChange} />
+                            <LabelsDropDownForm difficultyLabel={difficultyLabel[0]} setDifficultyLabel={setDifficultyLabel} />
+
+
+                            <button className="btn btn-success" type="submit" onClick={saveRecipe}>{!recipeId ? "Save" : 'Update'}</button>
                         </form>
                     </div>
 
