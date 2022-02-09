@@ -9,6 +9,7 @@ import FooterComponent from './components/FooterComponent';
 import IngredientForm from './components/IngredientForm';
 import PreparationStepsForm from './components/PreparationStepsForm';
 import AdminDashboard from './components/AdminDashboard';
+import LabelsDropDownForm from './components/DifficultyDropDownForm';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/createRecipe" element={<CreateRecipeComponent />} />
             <Route path="/preparationStepsForm" element={<PreparationStepsForm />} />
             <Route path="/adminDashboard" element={<AdminDashboard />} />
+            
 
           </Routes>
         </div>

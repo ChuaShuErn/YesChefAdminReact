@@ -4,12 +4,16 @@ import RecipeService from '../services/RecipeService';
 import IngredientForm from './IngredientForm';
 import PreparationStepsForm from './PreparationStepsForm';
 import {defaultInputFields} from '../utils/IngredientInputField'
+import LabelsDropDownForm from './DifficultyDropDownForm';
 
 function CreateRecipeComponent() {
     const [inputFields, setInputFields] = useState([
         defaultInputFields()
     ])
+    //ingredientFields
     //not clear that this is the ingredient inputFields
+
+    const[difficultyLabel, setDifficultyLabel] = useState(['']);
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -28,7 +32,8 @@ function CreateRecipeComponent() {
         const recipe = {
             name,
             description,
-            ingredients: inputFields
+            ingredients: inputFields,
+            difficulty: difficultyLabel
         }
 
         //props.setRecipes([recipe, ...props.recipes])  
@@ -70,6 +75,7 @@ function CreateRecipeComponent() {
                             </div>
                             <IngredientForm inputFields={inputFields} setInputFields={setInputFields} />
                             <PreparationStepsForm />
+                            <LabelsDropDownForm difficultyLabel ={difficultyLabel[0]} setDifficultyLabel = {setDifficultyLabel}/>
                             <button className="btn btn-success" type="submit" onClick={saveRecipe}>Save</button>
                         </form>
                     </div>
