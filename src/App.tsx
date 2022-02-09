@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ListRecipeComponent from './components/ListRecipeComponent';
+import CreateRecipeComponent from './components/CreateRecipeComponent';
+import HeaderComponent from './components/HeaderComponent';
+import FooterComponent from './components/FooterComponent';
+import IngredientForm from './components/IngredientForm';
+import PreparationStepsForm from './components/PreparationStepsForm';
+import AdminDashboard from './components/AdminDashboard';
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <BrowserRouter>
+      <div>
+        <HeaderComponent />
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<ListRecipeComponent />} />
+            {/* <Route path="/ingredientForm" element={<IngredientForm />} /> */}
+            <Route path="/recipes" element={<ListRecipeComponent />} />
+            <Route path="/createRecipe" element={<CreateRecipeComponent />} />
+            <Route path="/preparationStepsForm" element={<PreparationStepsForm />} />
+            <Route path="/adminDashboard" element={<AdminDashboard />} />
 
-export default App;
+          </Routes>
+        </div>
+        <FooterComponent />
+      </div>
+    </BrowserRouter>
+
+  )
+}
