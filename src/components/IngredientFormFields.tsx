@@ -5,26 +5,24 @@ import RemoveButton from '@material-ui/icons/Remove';
 import AddButton from '@material-ui/icons/Add';
 import { v4 as uuidv4 } from 'uuid';
 
-interface schema{
-    fields: {
-        id: string;
-        ingredient: string;
-        amount: string;
-        unit: string;
-        comment: string;
-    };
-    setInputFields: React.Dispatch<React.SetStateAction<{
-        id: string;
-        ingredient: string;
-        amount: string;
-        unit: string;
-        comment: string;
-    }[]>>
+export interface IIngredient {
+    ingredient: string;
+    amount: string;
+    unit: string;
+    comment: string;
 }
-export default function IngredientFormFields({ fields: { id, ingredient, amount, unit, comment }, setInputFields }:schema) {
+
+interface IIngredientFormFieldsProps {
+    index: number;
+    fields: IIngredient;
+    setInputFields: React.Dispatch<React.SetStateAction<IIngredient[]>>
+}
+
+const IngredientFormFields = ({ index, fields, setInputFields }: IIngredientFormFieldsProps) => {
+    const { ingredient, amount, unit, comment } = fields;
 
     const onChange = (event: any) => {
-        setInputFields(prevState => prevState.map(fieldsObj => fieldsObj.id === id ? ({
+        setInputFields(prevState => prevState.map((fieldsObj, i) => i === index ? ({
             ...fieldsObj,
             [event.target.name]: event.target.value
         }) : fieldsObj))
@@ -61,10 +59,12 @@ export default function IngredientFormFields({ fields: { id, ingredient, amount,
                 value={comment}
                 onChange={onChange}
             />
-            <IconButton onClick={() => setInputFields(prevFields => prevFields.filter(fieldObj => fieldObj.id !== id))} >
+            <IconButton onClick={() => setInputFields(prevFields => prevFields.filter((_, i) => i !== index))} >
                 <RemoveButton />
             </IconButton>
         </div>
 
     )
 }
+
+export default IngredientFormFields;

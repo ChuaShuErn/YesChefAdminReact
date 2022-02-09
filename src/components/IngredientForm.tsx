@@ -5,30 +5,17 @@ import IconButton from '@material-ui/core/IconButton';
 import RemoveButton from '@material-ui/icons/Remove';
 import AddButton from '@material-ui/icons/Add';
 import { v4 as uuidv4 } from 'uuid';
-import IngredientFormFields from './IngredientFormFields';
+import IngredientFormFields, { IIngredient } from './IngredientFormFields';
 
 import Button from '@material-ui/core/Button';
 import { defaultInputFields } from '../utils/IngredientInputField'
 
-
-
-interface schema {
-    inputFields: {
-        id: string;
-        ingredient: string;
-        amount: string;
-        unit: string;
-        comment: string;
-    }[];
-    setInputFields: React.Dispatch<React.SetStateAction<{
-        id: string;
-        ingredient: string;
-        amount: string;
-        unit: string;
-        comment: string;
-    }[]>>
+interface IIngredientFormProps {
+    inputFields: IIngredient[];
+    setInputFields: React.Dispatch<React.SetStateAction<IIngredient[]>>
 }
-function IngredientForm({ inputFields, setInputFields }: schema) {
+
+const IngredientForm = ({ inputFields, setInputFields }: IIngredientFormProps) => {
 
 
     // const submitHandler = (event) => {
@@ -46,7 +33,7 @@ function IngredientForm({ inputFields, setInputFields }: schema) {
                 {
                     //.map function builds a Dictionary?
                     inputFields.map((fields, index) =>
-                        <IngredientFormFields key={index} fields={fields} setInputFields={setInputFields} />
+                        <IngredientFormFields key={index} index={index} fields={fields} setInputFields={setInputFields} />
                     )
                 }
                 <Button variant="contained" startIcon={<AddButton />}
@@ -58,5 +45,7 @@ function IngredientForm({ inputFields, setInputFields }: schema) {
 
         </Container>
     );
-} export default IngredientForm;
+} 
+
+export default IngredientForm;
 

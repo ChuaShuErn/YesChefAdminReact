@@ -6,62 +6,46 @@ import RemoveButton from '@material-ui/icons/Remove';
 import AddButton from '@material-ui/icons/Add';
 import { v4 as uuidv4 } from 'uuid';
 
-type InputFieldType = {
-        id: string;
-        step: string;
-}
-
-const defaultInputField = () => ({ id: uuidv4(), step: "" });
-
-function PreparationStepsForm() {
-
-    const [inputFields, setInputFields] = useState([
-        defaultInputField()
-    ]);
-
+const PreparationStepsForm = ({prepStepField,onPrepStepFieldChange}: {
+    prepStepField: string[],
+    onPrepStepFieldChange: (prepSteps: string[]) => void,
+}) => {
     const handleAddFields = (index: number) => {
 
-        const inputFieldsPriorToIndex = inputFields.slice(0, index) as any;
-        const inputFieldsNextToIndex =  inputFields.slice( index ) as any;
+        const inputFieldsPriorToIndex = prepStepField.slice(0, index) as any;
+        const inputFieldsNextToIndex =  prepStepField.slice( index ) as any;
 
-        setInputFields([].concat(inputFieldsPriorToIndex, defaultInputField() as any, inputFieldsNextToIndex));
+        onPrepStepFieldChange([...inputFieldsPriorToIndex, '', ...inputFieldsNextToIndex]);
     }
 
-    const handleRemoveFields = (id: string) => {
-        setInputFields(prevState => prevState.filter(obj => obj.id !== id))
-        
+    const handleRemoveFields = (index: number) => {
+        onPrepStepFieldChange(prepStepField.filter((_, i) => i !== index))
     }
 
-    const handleChangeInput = (event: any, id: string) => {
-        const newStep = inputFields.map(i => {
-            if (id == i.id) {
-                return {
-                    ...i,
-                    [event.target.name] : event.target.value
-                }
+    const handleChangeInput = (event: any, index: number) => {
+        const newStep = prepStepField.map((prepStep, i) => {
+            if (i == index) {
+                return event.target.value;
             }
-            return i;
+            return prepStep;
 
         })
-        setInputFields(newStep);
+        onPrepStepFieldChange(newStep);
     }
 
-
-
     return (
-
         <Container>
             <h1>PreparationStepsForm</h1>
-            {inputFields.map((inputField, index) => (
+            {prepStepField.map((inputField, index) => (
                 <div key={index}>
                     <TextField
                         name="step"
                         label="step"
                         variant='filled'
-                        value={inputField.step}
-                        onChange={event => handleChangeInput(event, inputField.id)}
+                        value={inputField}
+                        onChange={event => handleChangeInput(event, index)}
                     />
-                    <IconButton onClick={() => handleRemoveFields(inputField.id )}>
+                    <IconButton onClick={() => handleRemoveFields(index)}>
                         <RemoveButton />
                     </IconButton>
                     <IconButton onClick={() => handleAddFields(index + 1)}>
@@ -72,4 +56,6 @@ function PreparationStepsForm() {
             ))}
         </Container>
     );
-} export default PreparationStepsForm;
+} 
+
+export default PreparationStepsForm;

@@ -5,6 +5,7 @@ import IngredientForm from './IngredientForm';
 import PreparationStepsForm from './PreparationStepsForm';
 import {defaultInputFields} from '../utils/IngredientInputField'
 import LabelsDropDownForm from './DifficultyDropDownForm';
+import { v4 as uuidv4 } from 'uuid';
 
 function CreateRecipeComponent() {
     const [inputFields, setInputFields] = useState([
@@ -12,12 +13,16 @@ function CreateRecipeComponent() {
     ])
     //ingredientFields
     //not clear that this is the ingredient inputFields
+    const [prepStepField, setprepStepField] = useState(['']);
 
     const[difficultyLabel, setDifficultyLabel] = useState(['']);
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
+    const handlePrepStepFieldChange = (prepSteps: string[]) => {
+        setprepStepField(prepSteps)
+    } 
 
     const changeRecipeNameHandler = (event: any) => {
         setName(event.target.value);
@@ -33,7 +38,8 @@ function CreateRecipeComponent() {
             name,
             description,
             ingredients: inputFields,
-            difficulty: difficultyLabel
+            difficulty: difficultyLabel,
+            prepSteps: prepStepField,
         }
 
         //props.setRecipes([recipe, ...props.recipes])  
@@ -74,7 +80,7 @@ function CreateRecipeComponent() {
                                     value={description} onChange={changeDescriptionHandler} />
                             </div>
                             <IngredientForm inputFields={inputFields} setInputFields={setInputFields} />
-                            <PreparationStepsForm />
+                            <PreparationStepsForm prepStepField={prepStepField} onPrepStepFieldChange={handlePrepStepFieldChange}/>
                             <LabelsDropDownForm difficultyLabel ={difficultyLabel[0]} setDifficultyLabel = {setDifficultyLabel}/>
                             <button className="btn btn-success" type="submit" onClick={saveRecipe}>Save</button>
                         </form>
