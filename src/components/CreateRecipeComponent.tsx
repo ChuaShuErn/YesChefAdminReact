@@ -13,18 +13,29 @@ import CourseTypeLabelForm from './CourseTypeLabelForm';
 function CreateRecipeComponent() {
     const recipeId = useParams().id
 
+    //Step Fields
     const [inputFields, setInputFields] = useState([
         defaultInputFields()
     ])
     //ingredientFields
     //not clear that this is the ingredient inputFields
     const [prepStepField, setprepStepField] = useState(['']);
+    const[imageURL, setImageURL] = useState(['']);
 
+    //Text Fields
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const[noOfServings, setNoOfServings] = useState(0);
+    const[calories, setCalories] = useState(0);
+    const[prepTime, setprepTime] = useState(0);
+
+    
+
+    //Drop downs
     const [difficultyLabel, setDifficultyLabel] = useState(['']);
     const [courseTypeLabel,setCourseTypeLabel] = useState('');
 
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    
 
     useEffect(() => {
         async function fetchRecipe() {
@@ -32,7 +43,7 @@ function CreateRecipeComponent() {
             try {
                 const { data } = await RecipeService.getOneRecipe(recipeId)
 
-
+                //TODO: set all other fields
                 setName(data.name);
                 setDescription(data.description);
                 setInputFields(data.ingredients);
@@ -62,26 +73,37 @@ function CreateRecipeComponent() {
     const changeDescriptionHandler = (event: any) => {
         setDescription(event.target.value);
     }
+    const changeServingsHandler = (event:any) =>{
+        setNoOfServings(parseInt(event.target.value));
+    }
+
+    const changeCaloriesHandler = (event:any)=>{
+        setCalories(parseInt(event.target.value));
+    }
+    
+    const changeprepTimeHandler = (event:any)=>{
+        setprepTime(parseInt(event.target.value));
+    }
 
     const saveRecipe = (event: any) => {
         event.preventDefault(); //prevents another HTTP request after form is submitted
         const recipe = {
 
             // id: recipeId,
-            name,
-            description,
-            ingredients: inputFields,
-            difficulty: difficultyLabel,
-            prepSteps: prepStepField,
+            name,//done
+            description,//done
+            ingredients: inputFields,//done
+            difficulty: difficultyLabel,//done
+            prepSteps: prepStepField,//done
             imageURL: [],
-            courseType: courseTypeLabel,
+            courseType: courseTypeLabel,//done
             cuisineType: [],
             technique: [],
             tags: [],
             nutrition: [],
-            noOfServings: 0,
-            calories: 0,
-            prepTime: 0
+            noOfServings: noOfServings,
+            calories: calories,
+            prepTime: prepTime
         }
         
 
@@ -99,14 +121,14 @@ function CreateRecipeComponent() {
                 difficulty: difficultyLabel,
                 prepSteps: prepStepField,
                 imageURL: [],
-                courseType: '',
+                courseType: courseTypeLabel,
                 cuisineType: [],
                 technique: [],
                 tags: [],
                 nutrition: [],
-                noOfServings: 0,
-                calories: 0,
-                prepTime: 0
+                noOfServings: noOfServings,
+                calories: calories,
+                prepTime: prepTime
             }
     
             //RecipeService.updateRecipe(recipeId, recipe);
@@ -143,6 +165,21 @@ function CreateRecipeComponent() {
                                 <label>Description </label>
                                 <input placeholder="description" name="description" className="form-control"
                                     value={description} onChange={changeDescriptionHandler} />
+                            </div>
+                            <div className="form-group">
+                                <label>Number of Servings </label>
+                                <input placeholder="No. of Servings" type = "number" name="noOfServings" className="form-control"
+                                    value={noOfServings} onChange={changeServingsHandler} />
+                            </div>
+                            <div className="form-group">
+                                <label>Calories </label>
+                                <input placeholder="Calories" type = "number" name="Calories" className="form-control"
+                                    value={calories} onChange={changeCaloriesHandler} />
+                            </div>
+                            <div className="form-group">
+                                <label>Preparation Time (in Seconds) </label>
+                                <input placeholder="Preparation Time in Seconds" type = "number" name="Calories" className="form-control"
+                                    value={prepTime} onChange={changeprepTimeHandler} />
                             </div>
                             <IngredientForm inputFields={inputFields} setInputFields={setInputFields} />
                             <PreparationStepsForm prepStepField={prepStepField} onPrepStepFieldChange={handlePrepStepFieldChange} />

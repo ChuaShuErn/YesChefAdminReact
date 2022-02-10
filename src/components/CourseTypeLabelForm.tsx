@@ -17,7 +17,7 @@ function CourseTypeLabelForm({courseTypeLabel, setCourseTypeLabel}:schema) {
 
     const onChange = (event: any) =>{
         console.log(event.target.value);
-        setCourseTypeLabel = event.target.value;
+        setCourseTypeLabel(event.target.value);
         
 
     }
