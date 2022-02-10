@@ -2,12 +2,14 @@ import React, { useState, useEffect, Component } from 'react';
 
 import RecipeService from '../services/RecipeService';
 import IngredientForm from './IngredientForm';
+import ImageURLForm from './ImageURLForm';
 import PreparationStepsForm from './PreparationStepsForm';
 import { defaultInputFields } from '../utils/IngredientInputField'
+import {NutritionInputFields} from '../utils/NutritionInputField';
 import LabelsDropDownForm from './DifficultyDropDownForm';
-import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router-dom';
 import CourseTypeLabelForm from './CourseTypeLabelForm';
+import NutritionForm from'./NutritionForm';
 
 
 function CreateRecipeComponent() {
@@ -20,7 +22,10 @@ function CreateRecipeComponent() {
     //ingredientFields
     //not clear that this is the ingredient inputFields
     const [prepStepField, setprepStepField] = useState(['']);
-    const[imageURL, setImageURL] = useState(['']);
+    const[imageURLField, setImageURLField] = useState(['']);
+    const[nutritionField, setNutritionField] = useState([
+        NutritionInputFields()
+    ])
 
     //Text Fields
     const [name, setName] = useState('');
@@ -63,7 +68,10 @@ function CreateRecipeComponent() {
 
 
     const handlePrepStepFieldChange = (prepSteps: string[]) => {
-        setprepStepField(prepSteps)
+        setprepStepField(prepSteps);
+    }
+    const handleImageURLFieldChange = (imageURLFields : string[]) =>{
+        setImageURLField(imageURLFields);
     }
 
     const changeRecipeNameHandler = (event: any) => {
@@ -95,12 +103,12 @@ function CreateRecipeComponent() {
             ingredients: inputFields,//done
             difficulty: difficultyLabel,//done
             prepSteps: prepStepField,//done
-            imageURL: [],
+            imageURL: imageURLField,//done
             courseType: courseTypeLabel,//done
             cuisineType: [],
             technique: [],
             tags: [],
-            nutrition: [],
+            nutrition: nutritionField,
             noOfServings: noOfServings,
             calories: calories,
             prepTime: prepTime
@@ -120,12 +128,12 @@ function CreateRecipeComponent() {
                 ingredients: inputFields,
                 difficulty: difficultyLabel,
                 prepSteps: prepStepField,
-                imageURL: [],
+                imageURL: imageURLField,
                 courseType: courseTypeLabel,
                 cuisineType: [],
                 technique: [],
                 tags: [],
-                nutrition: [],
+                nutrition: nutritionField,
                 noOfServings: noOfServings,
                 calories: calories,
                 prepTime: prepTime
@@ -181,10 +189,12 @@ function CreateRecipeComponent() {
                                 <input placeholder="Preparation Time in Seconds" type = "number" name="Calories" className="form-control"
                                     value={prepTime} onChange={changeprepTimeHandler} />
                             </div>
+                            <ImageURLForm imageURLField={imageURLField} onImageURLFieldChange={handleImageURLFieldChange}/>
                             <IngredientForm inputFields={inputFields} setInputFields={setInputFields} />
                             <PreparationStepsForm prepStepField={prepStepField} onPrepStepFieldChange={handlePrepStepFieldChange} />
                             <LabelsDropDownForm difficultyLabel={difficultyLabel[0]} setDifficultyLabel={setDifficultyLabel} />
                             <CourseTypeLabelForm courseTypeLabel={courseTypeLabel} setCourseTypeLabel={setCourseTypeLabel}/>
+                            <NutritionForm nutritionField={nutritionField} setNutritionField={setNutritionField}/>
                             <button className="btn btn-success" type="submit" onClick={saveRecipe}>{!recipeId ? "Save" : 'Update'}</button>
                         </form>
                     </div>
