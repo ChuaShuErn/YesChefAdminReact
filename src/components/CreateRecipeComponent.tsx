@@ -7,6 +7,7 @@ import { defaultInputFields } from '../utils/IngredientInputField'
 import LabelsDropDownForm from './DifficultyDropDownForm';
 import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router-dom';
+import CourseTypeLabelForm from './CourseTypeLabelForm';
 
 
 function CreateRecipeComponent() {
@@ -20,6 +21,7 @@ function CreateRecipeComponent() {
     const [prepStepField, setprepStepField] = useState(['']);
 
     const [difficultyLabel, setDifficultyLabel] = useState(['']);
+    const [courseTypeLabel,setCourseTypeLabel] = useState('');
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -64,13 +66,15 @@ function CreateRecipeComponent() {
     const saveRecipe = (event: any) => {
         event.preventDefault(); //prevents another HTTP request after form is submitted
         const recipe = {
+
+            // id: recipeId,
             name,
             description,
             ingredients: inputFields,
             difficulty: difficultyLabel,
             prepSteps: prepStepField,
             imageURL: [],
-            courseType: '',
+            courseType: courseTypeLabel,
             cuisineType: [],
             technique: [],
             tags: [],
@@ -79,12 +83,34 @@ function CreateRecipeComponent() {
             calories: 0,
             prepTime: 0
         }
+        
 
         if (!recipeId){
-            RecipeService.createRecipe(recipe);
+            //RecipeService.createRecipe(recipe);
+            console.log(recipe);
         }
         else{
-            RecipeService.updateRecipe(recipeId, recipe);
+            const recipe = {
+
+                id: recipeId,
+                name,
+                description,
+                ingredients: inputFields,
+                difficulty: difficultyLabel,
+                prepSteps: prepStepField,
+                imageURL: [],
+                courseType: '',
+                cuisineType: [],
+                technique: [],
+                tags: [],
+                nutrition: [],
+                noOfServings: 0,
+                calories: 0,
+                prepTime: 0
+            }
+    
+            //RecipeService.updateRecipe(recipeId, recipe);
+            console.log(recipe);
         }
     }
 
@@ -121,8 +147,7 @@ function CreateRecipeComponent() {
                             <IngredientForm inputFields={inputFields} setInputFields={setInputFields} />
                             <PreparationStepsForm prepStepField={prepStepField} onPrepStepFieldChange={handlePrepStepFieldChange} />
                             <LabelsDropDownForm difficultyLabel={difficultyLabel[0]} setDifficultyLabel={setDifficultyLabel} />
-
-
+                            <CourseTypeLabelForm courseTypeLabel={courseTypeLabel} setCourseTypeLabel={setCourseTypeLabel}/>
                             <button className="btn btn-success" type="submit" onClick={saveRecipe}>{!recipeId ? "Save" : 'Update'}</button>
                         </form>
                     </div>

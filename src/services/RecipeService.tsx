@@ -4,6 +4,7 @@ const RECIPE_API_BASE_URL = 'http://localhost:8090/api/v1/';
 
 
 
+
 interface RecipeType {
     name: string;
     description: string;
@@ -31,6 +32,9 @@ class RecipeService{
     }
     getOneRecipe(id: string){
         return axios.get(RECIPE_API_BASE_URL + "updateRecipe/" + id);
+    }
+    getAllDistinctLabels(){
+        return axios.get(RECIPE_API_BASE_URL + "/filter_properties");
     }
 
     
