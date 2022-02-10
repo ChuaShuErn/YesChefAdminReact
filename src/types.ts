@@ -1,5 +1,5 @@
 export interface RecipeType {
-    id: string;
+    id?: string;
     name: string;
     description: string;
     imageURL: string[];
@@ -27,3 +27,23 @@ export interface RecipeType {
 
 
 }
+
+
+
+
+
+
+export interface RecipeType {
+    name: string;
+    description: string;
+    ingredients: {
+        ingredient: string;
+        amount: string;
+        unit: string;
+        comment: string;
+    }[];
+    difficulty: string[];
+    prepSteps: string[];
+}
+
+export type distinctType = 'cuisineType' | 'techniqueType' | 'tagType'

@@ -17,7 +17,9 @@ class HeaderComponent extends Component {
                             <li className="active"><a href="/preparationStepsForm">PreparationForm</a></li>
                             <li className="active"><a href="/adminDashboard">Admin Dashboard</a></li>
                             <li className="active"><a href="/dropDown">Labels Drop Down Component</a></li>
-                        </ul>
+                            <li className="active"><a href=" /checkboxtest">Checkbox check</a></li>
+                        </ul>    
+                           
                     </nav>
                 </header>
                 

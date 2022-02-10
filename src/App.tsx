@@ -10,6 +10,7 @@ import IngredientForm from './components/IngredientForm';
 import PreparationStepsForm from './components/PreparationStepsForm';
 import AdminDashboard from './components/AdminDashboard';
 import LabelsDropDownForm from './components/DifficultyDropDownForm';
+import CuisineTypeCheckboxForm from './components/TypeCheckboxForm';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
             <Route path="/updateRecipe/:id" element={<CreateRecipeComponent />} />
             {/* <Route path="/preparationStepsForm" element={<PreparationStepsForm />} /> */}
             <Route path="/adminDashboard" element={<AdminDashboard />} />
+            
             
           </Routes>
         </div>

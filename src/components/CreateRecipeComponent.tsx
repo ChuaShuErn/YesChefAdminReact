@@ -5,12 +5,13 @@ import IngredientForm from './IngredientForm';
 import ImageURLForm from './ImageURLForm';
 import PreparationStepsForm from './PreparationStepsForm';
 import { defaultInputFields } from '../utils/IngredientInputField'
-import {NutritionInputFields} from '../utils/NutritionInputField';
+import { NutritionInputFields } from '../utils/NutritionInputField';
 import LabelsDropDownForm from './DifficultyDropDownForm';
 import { useParams } from 'react-router-dom';
 import CourseTypeLabelForm from './CourseTypeLabelForm';
-import NutritionForm from'./NutritionForm';
-
+import NutritionForm from './NutritionForm';
+import TypeCheckboxForm from './TypeCheckboxForm';
+import { Stack } from '@mui/material';
 
 function CreateRecipeComponent() {
     const recipeId = useParams().id
@@ -22,25 +23,30 @@ function CreateRecipeComponent() {
     //ingredientFields
     //not clear that this is the ingredient inputFields
     const [prepStepField, setprepStepField] = useState(['']);
-    const[imageURLField, setImageURLField] = useState(['']);
-    const[nutritionField, setNutritionField] = useState([
+    const [imageURLField, setImageURLField] = useState(['']);
+    const [nutritionField, setNutritionField] = useState([
         NutritionInputFields()
     ])
 
     //Text Fields
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const[noOfServings, setNoOfServings] = useState(0);
-    const[calories, setCalories] = useState(0);
-    const[prepTime, setprepTime] = useState(0);
+    const [noOfServings, setNoOfServings] = useState(0);
+    const [calories, setCalories] = useState(0);
+    const [prepTime, setprepTime] = useState(0);
 
-    
+    //Checkbox Forms
+    const [cuisineTypes, setCuisineTypes] = useState(['']);
+    const [techniques, setTechniques] = useState(['']);
+    const [tags, setTags] = useState(['']);
+
+
 
     //Drop downs
     const [difficultyLabel, setDifficultyLabel] = useState(['']);
-    const [courseTypeLabel,setCourseTypeLabel] = useState('');
+    const [courseTypeLabel, setCourseTypeLabel] = useState('');
 
-    
+
 
     useEffect(() => {
         async function fetchRecipe() {
@@ -48,13 +54,21 @@ function CreateRecipeComponent() {
             try {
                 const { data } = await RecipeService.getOneRecipe(recipeId)
 
-                //TODO: set all other fields
+                //All fields set
                 setName(data.name);
                 setDescription(data.description);
-                setInputFields(data.ingredients);
+                setImageURLField(data.imageURL);
+                setCuisineTypes(data.cuisineType);
+                setCourseTypeLabel(data.courseType);
                 setDifficultyLabel(data.difficulty);
+                setTechniques(data.technique);
+                setTags(data.tags);
+                setprepTime(data.prepTime);
+                setNoOfServings(data.noOfServings);
+                setCalories(data.calories);
+                setInputFields(data.ingredients);
                 setprepStepField(data.prepSteps);
-    
+                setNutritionField(data.nutrition);
                 // console.log(data)
             }
             catch (err) {
@@ -67,10 +81,11 @@ function CreateRecipeComponent() {
 
 
 
+
     const handlePrepStepFieldChange = (prepSteps: string[]) => {
         setprepStepField(prepSteps);
     }
-    const handleImageURLFieldChange = (imageURLFields : string[]) =>{
+    const handleImageURLFieldChange = (imageURLFields: string[]) => {
         setImageURLField(imageURLFields);
     }
 
@@ -81,23 +96,22 @@ function CreateRecipeComponent() {
     const changeDescriptionHandler = (event: any) => {
         setDescription(event.target.value);
     }
-    const changeServingsHandler = (event:any) =>{
+    const changeServingsHandler = (event: any) => {
         setNoOfServings(parseInt(event.target.value));
     }
 
-    const changeCaloriesHandler = (event:any)=>{
+    const changeCaloriesHandler = (event: any) => {
         setCalories(parseInt(event.target.value));
     }
-    
-    const changeprepTimeHandler = (event:any)=>{
+
+    const changeprepTimeHandler = (event: any) => {
         setprepTime(parseInt(event.target.value));
     }
 
     const saveRecipe = (event: any) => {
         event.preventDefault(); //prevents another HTTP request after form is submitted
         const recipe = {
-
-            // id: recipeId,
+            ...(recipeId && { id: recipeId }),
             name,//done
             description,//done
             ingredients: inputFields,//done
@@ -105,56 +119,29 @@ function CreateRecipeComponent() {
             prepSteps: prepStepField,//done
             imageURL: imageURLField,//done
             courseType: courseTypeLabel,//done
-            cuisineType: [],
-            technique: [],
-            tags: [],
-            nutrition: nutritionField,
-            noOfServings: noOfServings,
-            calories: calories,
-            prepTime: prepTime
+            cuisineType: cuisineTypes, //done
+            technique: techniques, //done
+            tags: tags, //done
+            nutrition: nutritionField,//done
+            noOfServings: noOfServings,//done
+            calories: calories,//done
+            prepTime: prepTime//done
         }
-        
 
-        if (!recipeId){
-            //RecipeService.createRecipe(recipe);
-            console.log(recipe);
+
+        if (!recipeId) {
+            RecipeService.createRecipe(recipe);
+            console.log(recipe)
+
         }
-        else{
-            const recipe = {
+        else {
 
-                id: recipeId,
-                name,
-                description,
-                ingredients: inputFields,
-                difficulty: difficultyLabel,
-                prepSteps: prepStepField,
-                imageURL: imageURLField,
-                courseType: courseTypeLabel,
-                cuisineType: [],
-                technique: [],
-                tags: [],
-                nutrition: nutritionField,
-                noOfServings: noOfServings,
-                calories: calories,
-                prepTime: prepTime
-            }
-    
-            //RecipeService.updateRecipe(recipeId, recipe);
-            console.log(recipe);
+            RecipeService.updateRecipe(recipeId, recipe);
+            console.log(recipe)
+
         }
     }
 
-
-
-
-    // const passIngredientList = (ingredients) =>{
-    //     ingredients.preventDefault();
-    //     const ingredientList = {
-
-    //     }
-    // }
-
-    //option 
 
     return (
         <div>
@@ -176,25 +163,52 @@ function CreateRecipeComponent() {
                             </div>
                             <div className="form-group">
                                 <label>Number of Servings </label>
-                                <input placeholder="No. of Servings" type = "number" name="noOfServings" className="form-control"
+                                <input placeholder="No. of Servings" type="number" name="noOfServings" className="form-control"
                                     value={noOfServings} onChange={changeServingsHandler} />
                             </div>
                             <div className="form-group">
                                 <label>Calories </label>
-                                <input placeholder="Calories" type = "number" name="Calories" className="form-control"
+                                <input placeholder="Calories" type="number" name="Calories" className="form-control"
                                     value={calories} onChange={changeCaloriesHandler} />
                             </div>
                             <div className="form-group">
                                 <label>Preparation Time (in Seconds) </label>
-                                <input placeholder="Preparation Time in Seconds" type = "number" name="Calories" className="form-control"
+                                <input placeholder="Preparation Time in Seconds" type="number" name="Calories" className="form-control"
                                     value={prepTime} onChange={changeprepTimeHandler} />
                             </div>
-                            <ImageURLForm imageURLField={imageURLField} onImageURLFieldChange={handleImageURLFieldChange}/>
+                            <ImageURLForm imageURLField={imageURLField} onImageURLFieldChange={handleImageURLFieldChange} />
+                            <br />
                             <IngredientForm inputFields={inputFields} setInputFields={setInputFields} />
+                            <br />
                             <PreparationStepsForm prepStepField={prepStepField} onPrepStepFieldChange={handlePrepStepFieldChange} />
+                            <br />
                             <LabelsDropDownForm difficultyLabel={difficultyLabel[0]} setDifficultyLabel={setDifficultyLabel} />
-                            <CourseTypeLabelForm courseTypeLabel={courseTypeLabel} setCourseTypeLabel={setCourseTypeLabel}/>
-                            <NutritionForm nutritionField={nutritionField} setNutritionField={setNutritionField}/>
+                            <br />
+                            <CourseTypeLabelForm courseTypeLabel={courseTypeLabel} setCourseTypeLabel={setCourseTypeLabel} />
+                            <br />
+                            <NutritionForm nutritionField={nutritionField} setNutritionField={setNutritionField} />
+                            <br />
+                            <Stack direction="row" spacing={1} justifyContent='space-between'>
+                                <TypeCheckboxForm
+                                    selectedOptions={cuisineTypes}
+                                    setSelectedOptions={setCuisineTypes}
+                                    type='cuisineType'
+                                    heading="Select Cuisine Type"
+                                />
+                                <TypeCheckboxForm
+                                    selectedOptions={techniques}
+                                    setSelectedOptions={setTechniques}
+                                    type="techniqueType"
+                                    heading="Select Techniques Type"
+                                />
+                                <TypeCheckboxForm
+                                    selectedOptions={tags}
+                                    setSelectedOptions={setTags}
+                                    type='tagType'
+                                    heading="Select Cuisine Tags"
+                                />
+                            </Stack>
+
                             <button className="btn btn-success" type="submit" onClick={saveRecipe}>{!recipeId ? "Save" : 'Update'}</button>
                         </form>
                     </div>
