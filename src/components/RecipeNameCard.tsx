@@ -14,7 +14,7 @@ const RecipeNameCard = ({ imageURL, name, courseType, difficulty,id }: schema) =
     <div>
 
       <li className={classes.recipe}>
-        <img src={imageURL[0] ?? "https://yeschefbucket.s3.ap-southeast-1.amazonaws.com/pork_rice.jpg"} onError={({ currentTarget }) => {
+        <img src={imageURL.slice(-1)[0] ?? "https://yeschefbucket.s3.ap-southeast-1.amazonaws.com/pork_rice.jpg"} onError={({ currentTarget }) => {
           currentTarget.onerror = null;
           currentTarget.src = "https://yeschefbucket.s3.ap-southeast-1.amazonaws.com/pork_rice.jpg";
         }} alt="img alt text" style={{ width: 150, height: 150 }} />
