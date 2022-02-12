@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from './RecipeNameCard.module.css';
 import { Link } from 'react-router-dom';
+import RecipeService from'../services/RecipeService';
+import Button from '@mui/material';
 
 interface schema {
   id: string;
@@ -10,6 +12,12 @@ interface schema {
   difficulty: string[];
 }
 const RecipeNameCard = ({ imageURL, name, courseType, difficulty,id }: schema) => {
+
+  function deleteRecipe(){
+    console.log("delete pressed");
+    console.log(id);
+    RecipeService.deleteRecipe(id);
+  }
   return (
     <div>
 
@@ -24,6 +32,10 @@ const RecipeNameCard = ({ imageURL, name, courseType, difficulty,id }: schema) =
         <Link to={'/updateRecipe/' + id}>
           Update
         </Link>
+
+        <button onClick={deleteRecipe}>
+          Delete
+        </button>
 
       </li>
 

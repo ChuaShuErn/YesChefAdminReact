@@ -12,6 +12,9 @@ class RecipeService{
     getRecipes(){
         return axios.get(RECIPE_API_BASE_URL + 'recipes');
     }
+    deleteRecipe(id: string){
+        return axios.delete(RECIPE_API_BASE_URL + "deleteRecipe/" + id)
+    }
 
     createRecipe(recipe: RecipeType){
         return axios.post(RECIPE_API_BASE_URL + "createRecipe", recipe);
@@ -59,6 +62,8 @@ class RecipeService{
     uploadImageFile(id:string, file: any, headers: any){
         return axios.post(RECIPE_API_BASE_URL + "upload_image/" + id, file, headers)
     }
+
+    
 
     
 }
