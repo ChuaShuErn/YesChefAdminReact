@@ -1,67 +1,169 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
-import RemoveButton from '@material-ui/icons/Remove';
-import AddButton from '@material-ui/icons/Add';
+import { Remove, Add, CloudUpload } from '@material-ui/icons';
+
+
+import { Button, Grid, Stack, Modal } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
+import RecipeService from '../services/RecipeService';
 
-const ImageURLForm = ({imageURLField,onImageURLFieldChange}: {
-    imageURLField: string[],
-    onImageURLFieldChange: (prepSteps: string[]) => void,
-}) => {
-    const handleAddFields = (index: number) => {
 
-        const inputFieldsPriorToIndex = imageURLField.slice(0, index) as any;
-        const inputFieldsNextToIndex =  imageURLField.slice( index ) as any;
 
-        onImageURLFieldChange([...inputFieldsPriorToIndex, '', ...inputFieldsNextToIndex]);
-    }
+type localImagesArrayType = {
+    fileType: string;
+    url: string;
+    id: string;
+    file: File
+}[]
 
-    const handleRemoveFields = (index: number) => {
-        if(imageURLField.length == 1){
+interface schema {
+    imageModalDetails: {
+        shouldShow: boolean,
+        recipeId: string | undefined
+    },
+    setImageModalDetails: (arg: any) => void,
 
+
+}
+export default function ImageURLForm({ imageModalDetails, setImageModalDetails }: schema) {
+    const [localImages, setLocalImages] = useState<localImagesArrayType>([]);
+
+    const imagesSelectRef = useRef<HTMLInputElement>(null);
+
+
+
+    const onFileChange = async (e: any) => {
+        Object.values(e.target.files).forEach((file: any) => {
+            const type = file.type.split("/").shift().toLowerCase();
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = async (E: any) => {
+                setLocalImages((prevState) =>
+                    prevState.concat({
+                        file,
+                        fileType: type,
+                        url: E.target.result,
+                        id: uuidv4(),
+                    })
+                );
+            };
+        });
+
+        if (imagesSelectRef.current?.value) {
+            imagesSelectRef.current.value = "";
         }
-        else{
-            onImageURLFieldChange(imageURLField.filter((_, i) => i !== index))
-        }       
-    }
+    };
 
-    const handleChangeInput = (event: any, index: number) => {
-        const newURL = imageURLField.map((prepStep, i) => {
-            if (i == index) {
-                return event.target.value;
+    const onClose = () => setImageModalDetails((prevState: any) => ({ ...prevState, shouldShow: false }))
+
+
+    const uploadToS3Bucket = async () => {
+        const multiPartFiles = localImages.map(imgObj => imgObj.file);
+        if (!imageModalDetails.recipeId) return alert('Receipe Id not provided')
+        if (!multiPartFiles.length) return alert('Please select files to upload')
+
+        const formData = new FormData();
+        formData.append('file', multiPartFiles[0])
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
             }
-            return prepStep;
+        }
 
-        })
-        onImageURLFieldChange(newURL);
+        try {
+
+            await RecipeService.uploadImageFile(imageModalDetails.recipeId, formData, config)
+            alert('Successfully uploaded files')
+            onClose()
+
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     return (
-        <Container>
-            <h1>Image URL Form</h1>
-            {imageURLField.map((inputField, index) => (
-                <div key={index}>
-                    <TextField
-                        name="Image URL"
-                        label="Image URL"
-                        variant='filled'
-                        style = {{width:850}}
-                        value={inputField}
-                        onChange={event => handleChangeInput(event, index)}
-                    />
-                    <IconButton onClick={() => handleRemoveFields(index)}>
-                        <RemoveButton />
-                    </IconButton>
-                    <IconButton onClick={() => handleAddFields(index + 1)}>
-                        <AddButton />
-                    </IconButton>
-                </div>
 
-            ))}
-        </Container>
+        <Modal
+            open={imageModalDetails.shouldShow}
+            onClose={onClose}
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
+        >
+            <Stack spacing={2}
+                sx={{
+                    padding: "20px",
+                    width: '90vw',
+                    height: '90vh',
+                    overflowY: 'auto',
+
+                    backgroundColor: '#ffffff',
+                    outline: "none",
+                    position: "relative",
+
+                    borderRadius: "10px",
+
+                    margin: "20px",
+                    boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                }}
+            >
+
+
+                <h1>New Local Images</h1>
+                <Grid container spacing={2}>
+                    {
+                        localImages.map((imgObj, index) =>
+                            <Grid key={index} item xs={12} sm={6} lg={3}>
+                                <img src={imgObj.url}
+                                    width={300}
+                                    height={300}
+                                />
+                            </Grid>
+                        )
+                    }
+                </Grid>
+
+                <Button startIcon={<Add />}
+                    variant="outlined"
+                    onClick={() => imagesSelectRef.current?.click()}
+                >
+                    Select Image
+                </Button>
+
+
+                <Stack direction="row" spacing={2}>
+                    <Button fullWidth startIcon={<Remove />}
+                        variant="outlined"
+                        onClick={onClose}
+                    >
+                        Cancel
+                    </Button>
+                    <Button fullWidth startIcon={<CloudUpload />}
+                        variant="outlined"
+                        onClick={uploadToS3Bucket}
+                    >
+                        Upload
+                    </Button>
+
+                </Stack>
+
+                <input
+                    ref={imagesSelectRef}
+                    type={"file"}
+                    accept="image/*"
+                    // multiple
+                    onChange={onFileChange}
+                    style={{ display: "none" }}
+                />
+            </Stack>
+
+        </Modal>
+
+
     );
-} 
+}
 
-export default ImageURLForm;

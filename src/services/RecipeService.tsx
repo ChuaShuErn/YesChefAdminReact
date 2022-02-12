@@ -51,6 +51,15 @@ class RecipeService{
         return axios.get(RECIPE_API_BASE_URL + "listDistinctDifficulty")
     }
 
+    //Is File correct? what about MultiPart File?
+    //react dropzone uploader
+    //npm install @uppy/aws-s3-multipart
+    //react-s3-uploader
+    //$ npm install --save react-s3-uploader-multipart
+    uploadImageFile(id:string, file: any, headers: any){
+        return axios.post(RECIPE_API_BASE_URL + "upload_image/" + id, file, headers)
+    }
+
     
 }
 

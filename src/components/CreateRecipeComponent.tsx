@@ -11,10 +11,15 @@ import { useParams } from 'react-router-dom';
 import CourseTypeLabelForm from './CourseTypeLabelForm';
 import NutritionForm from './NutritionForm';
 import TypeCheckboxForm from './TypeCheckboxForm';
-import { Stack } from '@mui/material';
+import { Stack, Grid } from '@mui/material';
 
 function CreateRecipeComponent() {
     const recipeId = useParams().id
+    const [imageModalDetails, setImageModalDetails] = useState({
+        shouldShow: false,
+        recipeId
+    });
+
 
     //Step Fields
     const [inputFields, setInputFields] = useState([
@@ -22,8 +27,8 @@ function CreateRecipeComponent() {
     ])
     //ingredientFields
     //not clear that this is the ingredient inputFields
-    const [prepStepField, setprepStepField] = useState(['']);
-    const [imageURLField, setImageURLField] = useState(['']);
+    const [prepStepField, setprepStepField] = useState<string[]>([]);
+    const [imageURLField, setImageURLField] = useState<string[]>([]);
     const [nutritionField, setNutritionField] = useState([
         NutritionInputFields()
     ])
@@ -36,14 +41,14 @@ function CreateRecipeComponent() {
     const [prepTime, setprepTime] = useState(0);
 
     //Checkbox Forms
-    const [cuisineTypes, setCuisineTypes] = useState(['']);
-    const [techniques, setTechniques] = useState(['']);
+    const [cuisineTypes, setCuisineTypes] = useState<string[]>([]);
+    const [techniques, setTechniques] = useState<string[]>([]);
     const [tags, setTags] = useState(['']);
 
 
 
     //Drop downs
-    const [difficultyLabel, setDifficultyLabel] = useState(['']);
+    const [difficultyLabel, setDifficultyLabel] = useState<string[]>([]);
     const [courseTypeLabel, setCourseTypeLabel] = useState('');
 
 
@@ -108,7 +113,7 @@ function CreateRecipeComponent() {
         setprepTime(parseInt(event.target.value));
     }
 
-    const saveRecipe = (event: any) => {
+    const saveRecipe = async (event: any) => {
         event.preventDefault(); //prevents another HTTP request after form is submitted
         const recipe = {
             ...(recipeId && { id: recipeId }),
@@ -130,14 +135,30 @@ function CreateRecipeComponent() {
 
 
         if (!recipeId) {
-            RecipeService.createRecipe(recipe);
-            console.log(recipe)
+            try {
+                const {data} = await RecipeService.createRecipe(recipe);
+                setImageModalDetails({
+                    shouldShow: true,
+                    recipeId: data.id       
+                })
+            } catch (err) {
+                console.error(err)
+            }
 
         }
         else {
+            try {
+                await RecipeService.updateRecipe(recipeId, recipe);
 
-            RecipeService.updateRecipe(recipeId, recipe);
-            console.log(recipe)
+                setImageModalDetails({
+                    shouldShow: true,
+                    recipeId       
+                })
+            } catch (err) {
+                console.error(err)
+            }
+
+
 
         }
     }
@@ -176,7 +197,28 @@ function CreateRecipeComponent() {
                                 <input placeholder="Preparation Time in Seconds" type="number" name="Calories" className="form-control"
                                     value={prepTime} onChange={changeprepTimeHandler} />
                             </div>
-                            <ImageURLForm imageURLField={imageURLField} onImageURLFieldChange={handleImageURLFieldChange} />
+
+                            <h1>Uploaded Images</h1>
+                            <Grid container spacing={2}>
+                                {
+                                    imageURLField.map((url, index) =>
+                                        <Grid key={index} item xs={12} sm={6} lg={3}>
+                                            <img src={url}
+                                                width={300}
+                                                height={300}
+                                            />
+                                        </Grid>
+                                    )
+                                }
+                            </Grid>
+
+                            <ImageURLForm
+                                imageModalDetails={imageModalDetails}
+                                setImageModalDetails={setImageModalDetails}
+
+                            />
+
+
                             <br />
                             <IngredientForm inputFields={inputFields} setInputFields={setInputFields} />
                             <br />
