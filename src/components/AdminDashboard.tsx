@@ -1,13 +1,20 @@
-import React from 'react'
-import Container from '@material-ui/core/Container';
 
+import ExampleLineChart from './LineChartDemo';
+import ExamplePieChart from './PieChartDemo';
 
 export default function AdminDashboard() {
   return (
+    
+    
+    
+    
     <div>AdminDashboard
-      <p> Pie Chart Here</p>
+      <p> Distribution of Cuisine </p>
 
-      <p> Trend line graph here</p>
+        <ExamplePieChart/>
+      <p> Recipe Portfolio Performance </p>
+
+        <ExampleLineChart/>
 
 
 
