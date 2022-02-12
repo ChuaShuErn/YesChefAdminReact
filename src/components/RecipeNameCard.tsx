@@ -13,10 +13,13 @@ interface schema {
 }
 const RecipeNameCard = ({ imageURL, name, courseType, difficulty,id }: schema) => {
 
+
+
   function deleteRecipe(){
     console.log("delete pressed");
     console.log(id);
     RecipeService.deleteRecipe(id);
+    window.location.reload();
   }
   return (
     <div>
