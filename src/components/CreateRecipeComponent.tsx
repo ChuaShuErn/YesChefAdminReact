@@ -27,7 +27,7 @@ function CreateRecipeComponent() {
     ])
     //ingredientFields
     //not clear that this is the ingredient inputFields
-    const [prepStepField, setprepStepField] = useState<string[]>([]);
+    const [prepStepField, setprepStepField] = useState(['']);
     const [imageURLField, setImageURLField] = useState<string[]>([]);
     const [nutritionField, setNutritionField] = useState([
         NutritionInputFields()
@@ -199,7 +199,11 @@ function CreateRecipeComponent() {
                             </div>
 
                             <h1>Uploaded Images</h1>
-                            <Grid container spacing={2}>
+                            {imageURLField.length == 0 ?
+                                        <p>No Images have been uploaded yet</p>:
+                                    
+                                <Grid container spacing={2}>
+                                    
                                 {
                                     imageURLField.map((url, index) =>
                                         <Grid key={index} item xs={12} sm={6} lg={3}>
@@ -210,7 +214,9 @@ function CreateRecipeComponent() {
                                         </Grid>
                                     )
                                 }
-                            </Grid>
+                            </Grid>}
+                            
+                            
 
                             <ImageURLForm
                                 imageModalDetails={imageModalDetails}
