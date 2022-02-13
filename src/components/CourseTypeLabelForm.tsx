@@ -30,8 +30,8 @@ function CourseTypeLabelForm({courseTypeLabel, setCourseTypeLabel}:schema) {
             <InputLabel >Course Type</InputLabel>
             <Select 
             
-            defaultValue=""
-            value = {courseTypeLabel}
+
+            value = {courseTypeLabel || 'Appetizers'}
             style = {{width:200}}
             onChange = {onChange}
             

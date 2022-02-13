@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {RecipeType, distinctType} from '../types';
+import {UploadRecipeType, distinctType} from '../types';
 
 const RECIPE_API_BASE_URL = 'http://localhost:8090/api/v1/';
 
@@ -16,10 +16,10 @@ class RecipeService{
         return axios.delete(RECIPE_API_BASE_URL + "deleteRecipe/" + id)
     }
 
-    createRecipe(recipe: RecipeType){
+    createRecipe(recipe: UploadRecipeType){
         return axios.post(RECIPE_API_BASE_URL + "createRecipe", recipe);
     }
-    updateRecipe(id: string, recipe: RecipeType){
+    updateRecipe(id: string, recipe: UploadRecipeType){
         return axios.put(RECIPE_API_BASE_URL + "updateRecipe/" + id, recipe);
     }
     getOneRecipe(id: string){
@@ -63,7 +63,22 @@ class RecipeService{
         return axios.post(RECIPE_API_BASE_URL + "upload_image/" + id, file, headers)
     }
 
-    
+    //search query
+    //this one return results that matches ingredient or recipe name
+    getSearchResults(query:string){
+        return axios.get(RECIPE_API_BASE_URL + "search/" + query)
+    }
+
+    //return all recipe by courseType 
+    //coursetype must match Breakfast, Dinner, Appetiser
+    getRecipesByCourseType(courseType:string){
+        return axios.get(RECIPE_API_BASE_URL + "findByCourseType/" + courseType)
+    }
+
+    //cuisineType must match Korean,Vietnamese,Japanese
+    getRecipesByCuisineType(cuisineType:string){
+        return axios.get(RECIPE_API_BASE_URL + "findByCuisineType/" + cuisineType)
+    }
 
     
 }

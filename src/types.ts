@@ -1,13 +1,13 @@
 export interface RecipeType {
     id?: string;
-    name: string;
-    description: string;
+    name: string; // search
+    description: string; //search
     imageURL: string[];
-    cuisineType: string[];
-    courseType: string;
-    difficulty: string[];
+    cuisineType: string[]; //search
+    courseType: string; //search
+    difficulty: string[]; //search
     technique: string[];
-    tags: string[];
+    tags: string[]; //search
     prepTime: number;
     noOfServings: number;
     calories: number;
@@ -16,8 +16,13 @@ export interface RecipeType {
         amount:string;
         unit:string;
         comment:string;
-    }[];
+    }[]; //search
     prepSteps: string[];
+    // userReviews: {
+    //     userEmail: string;
+    //     rating: number;
+    //     description:string;
+    // }
     nutrition: {
         content:string;
         quantity:number;
@@ -25,10 +30,10 @@ export interface RecipeType {
 
     }[];
 
-
+    searchString: string
 }
 
-export interface RecipeType {
+export interface UploadRecipeType extends Omit<RecipeType, 'searchString' > {
     name: string;
     description: string;
     ingredients: {

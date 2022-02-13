@@ -12,7 +12,7 @@ interface schema{
 }
 const RecipeContainer = ({recipes}:schema) => {
   return (
-    <ul className={classes['recipe-container']}>
+    <div className={classes['recipe-container']}>
       {recipes.map((recipe) => (
         <RecipeNameCard
           key={recipe.id}
@@ -23,7 +23,8 @@ const RecipeContainer = ({recipes}:schema) => {
           id={recipe.id as string}
         />
       ))}
-    </ul>
+    </div>
+    
   );
 };
 

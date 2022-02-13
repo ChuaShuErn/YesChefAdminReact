@@ -15,23 +15,24 @@ import CuisineTypeCheckboxForm from './components/TypeCheckboxForm';
 export default function App() {
   return (
     <BrowserRouter>
-      <div>
-        <HeaderComponent />
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<ListRecipeComponent />} />
-            {/* <Route path="/ingredientForm" element={<IngredientForm />} /> */}
-            <Route path="/recipes" element={<ListRecipeComponent />} />
-            <Route path="/createRecipe" element={<CreateRecipeComponent />} />
-            <Route path="/updateRecipe/:id" element={<CreateRecipeComponent />} />
-            {/* <Route path="/preparationStepsForm" element={<PreparationStepsForm />} /> */}
-            <Route path="/adminDashboard" element={<AdminDashboard />} />
-            
-            
-          </Routes>
-        </div>
-        <FooterComponent />
-      </div>
+
+      <HeaderComponent />
+      <br />
+      <Routes>
+        <Route path="/" element={<ListRecipeComponent />} />
+        {/* <Route path="/ingredientForm" element={<IngredientForm />} /> */}
+        <Route path="/recipes" element={<ListRecipeComponent />} />
+        <Route path="/createRecipe" element={<CreateRecipeComponent />} />
+        <Route path="/updateRecipe/:id" element={<CreateRecipeComponent />} />
+        {/* <Route path="/preparationStepsForm" element={<PreparationStepsForm />} /> */}
+        <Route path="/adminDashboard" element={<AdminDashboard />} />
+
+
+      </Routes>
+      <br />
+
+      <FooterComponent />
+
     </BrowserRouter>
 
   )

@@ -12,6 +12,7 @@ import CourseTypeLabelForm from './CourseTypeLabelForm';
 import NutritionForm from './NutritionForm';
 import TypeCheckboxForm from './TypeCheckboxForm';
 import { Stack, Grid } from '@mui/material';
+import { UserReviewInputField } from '../utils/UserReviewInputField';
 
 function CreateRecipeComponent() {
     const recipeId = useParams().id
@@ -32,6 +33,9 @@ function CreateRecipeComponent() {
     const [nutritionField, setNutritionField] = useState([
         NutritionInputFields()
     ])
+    // const [userReviewField,setUserReviewField] = useState([
+    //     UserReviewInputField()
+    // ])
 
     //Text Fields
     const [name, setName] = useState('');
@@ -73,6 +77,7 @@ function CreateRecipeComponent() {
                 setCalories(data.calories);
                 setInputFields(data.ingredients);
                 setprepStepField(data.prepSteps);
+                //setUserReviewField(data.userReview);
                 setNutritionField(data.nutrition);
                 // console.log(data)
             }
@@ -130,7 +135,8 @@ function CreateRecipeComponent() {
             nutrition: nutritionField,//done
             noOfServings: noOfServings,//done
             calories: calories,//done
-            prepTime: prepTime//done
+            prepTime: prepTime,//done
+            
         }
 
 

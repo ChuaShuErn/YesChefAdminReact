@@ -33,8 +33,7 @@ function DifficultyDropDownForm({difficultyLabel, setDifficultyLabel}:schema) {
             <InputLabel >Difficulty</InputLabel>
             <Select 
             // label = "Difficulty"
-            defaultValue="Easy"
-            value = {difficultyLabel}
+            value = {difficultyLabel || 'Easy'}
             style = {{width:200}}
             onChange = {onChange}
             
@@ -42,7 +41,7 @@ function DifficultyDropDownForm({difficultyLabel, setDifficultyLabel}:schema) {
             >
             <MenuItem value = {'Easy'}>Easy</MenuItem>
             <MenuItem value = {'Medium'}>Medium</MenuItem>
-            <MenuItem value = {'Hard'}>Hard</MenuItem>
+            <MenuItem value = {'Advanced'}>Advanced</MenuItem>
             </Select>
             </FormControl>
         </div>
