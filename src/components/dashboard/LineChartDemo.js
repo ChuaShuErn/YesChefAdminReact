@@ -13,15 +13,15 @@ export default class LineCharts extends React.Component{
 	      {day: 'Sun', Views: 99, Bookmarks: 34}
 		];
 		return(
-		  <ResponsiveContainer width="80%" height={300}>
+		  <ResponsiveContainer width="100%" height={300}>
 			  <LineChart data={data}>
 				  <CartesianGrid stroke="#dcdfe2" strokeDasharray="3 3"/>
-				  <XAxis dataKey="day" stroke="#dcdfe2" tick={{fontSize: 12,fontWeight: 700}}/>
-				  <YAxis stroke="#dcdfe2" tick={{fontSize: 12,fontWeight: 700}}/>
+					<XAxis dataKey="day" stroke="#949494 " tick={{fontSize: 12,fontWeight: 800}}/>
+					<YAxis stroke="#949494" tick={{fontSize: 12,fontWeight: 800}}/>
 				  <Tooltip/>
 				  
 				  <Line type="monotone" dataKey="Views" stroke="#4562ec" strokeWidth="2"/>
-				  <Line type="monotone" dataKey="Bookmarks" stroke="#a6b4bf" strokeWidth="2" strokeDasharray="5 5" dot={false}/>
+				  <Line type="monotone" dataKey="Bookmarks" stroke=" #ef7f17" strokeWidth="2"/>
 			  </LineChart>
 		  </ResponsiveContainer>
           
