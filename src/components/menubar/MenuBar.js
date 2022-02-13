@@ -3,7 +3,10 @@ import { Link} from 'react-router-dom';
 import { Nav, NavItem, Collapse} from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { IoPizzaOutline } from 'react-icons/io5';
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { AiOutlineDashboard } from "react-icons/ai";
+
 import DashboardIcon from './DashboardIcon';
 import ProfileIcon from './ProfileIcon';
 
@@ -25,7 +28,7 @@ export default class MenuBar extends React.Component {
           <NavItem>
             <Link to="/adminDashboard">
                <div className="md-icon">
-                <DashboardIcon strokeColor="#ffffff"/>
+               <AiOutlineDashboard size = {25}/>
               </div>
               Admin Dashboard
             </Link>
@@ -35,7 +38,7 @@ export default class MenuBar extends React.Component {
           <NavItem>
             <Link to="/">
                <div className="md-icon">
-               <FontAwesomeIcon icon="fa-solid fa-shrimp" />
+               <IoPizzaOutline size = {25}/>
               </div>
               View All Recipes
             </Link>
@@ -45,7 +48,7 @@ export default class MenuBar extends React.Component {
             <NavItem>
             <Link to="/createRecipe">
                <div className="md-icon">
-               <FontAwesomeIcon icon={"fa-bell"} strokeColor="#ffffff"/>
+               <HiOutlinePencilAlt size = {25}/>
               </div>
               Create New Recipe
             </Link>
