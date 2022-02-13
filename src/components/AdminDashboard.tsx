@@ -1,6 +1,7 @@
 
-import ExampleLineChart from './LineChartDemo';
-import ExamplePieChart from './PieChartDemo';
+import ExampleLineChart from './dashboard/LineChartDemo';
+import ExamplePieChart from './dashboard/PieChartDemo';
+import LeftMenuBar from './menubar/MenuBar';
 
 export default function AdminDashboard() {
   return (
@@ -9,12 +10,17 @@ export default function AdminDashboard() {
     
     
     <div>AdminDashboard
+      
+      
       <p> Distribution of Cuisine </p>
 
         <ExamplePieChart/>
       <p> Recipe Portfolio Performance </p>
 
         <ExampleLineChart/>
+
+      <p> Menubar </p>
+        <LeftMenuBar/>
 
 
 
