@@ -2,9 +2,8 @@ import React from 'react';
 import { Link} from 'react-router-dom';
 import { Nav, NavItem, Collapse} from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IoPizzaOutline } from 'react-icons/io5';
-import { HiOutlinePencilAlt } from "react-icons/hi";
+import { IoPizzaOutline, IoPersonOutline } from 'react-icons/io5';
+import { HiOutlinePencilAlt, HiOutlineLogout} from "react-icons/hi";
 import { AiOutlineDashboard } from "react-icons/ai";
 
 import DashboardIcon from './DashboardIcon';
@@ -21,6 +20,24 @@ export default class MenuBar extends React.Component {
     
     return (
       <div className={this.props.collapsed? 'sidenav-container collapsed': 'sidenav-container'}>
+
+
+      <div className="usernav">
+          <Link to="/">
+            <div className="page-title">Yes Chef</div>
+            <div className="page-subtitle">Better food everyday</div>
+            </Link>
+        </div>
+
+
+        <div className="usernav">
+          <Link to="/profile">
+            <div className="nav-item-title">Gabriel Alpin</div>
+            <div className="nav-item-subtitle">Member since Dec 2021</div>
+            </Link>
+        </div>
+
+
 
         <div className="sidenav">
 
@@ -54,12 +71,25 @@ export default class MenuBar extends React.Component {
             </Link>
             </NavItem>
 
+   
+
           <NavItem>
             <Link to="/profile">
               <div className="md-icon">
-                <ProfileIcon strokeColor="#ffffff"/>
+                <IoPersonOutline size = {25} style={{strokeWidth: "10"}}/>
               </div>
               Profile
+            </Link>
+          </NavItem>
+
+         
+
+          <NavItem>
+            <Link to="/logout">
+              <div className="md-icon">
+                <HiOutlineLogout size = {25}/>
+              </div>
+              Log Out
             </Link>
           </NavItem>
           

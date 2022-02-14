@@ -3,35 +3,36 @@
   position: fixed;
   height: 100%;
   max-height: 100%;
-  background-color: #4562ec;
+  background-color: #4657ac;
   overflow: hidden;
   transition: all 1s;
   top: 0;
   bottom: 0;
   left: 0;
-  width: 250px;
+  width: 260px;
   z-index: 10;
 }
 
 .sidenav {
   position: relative;
-  top: 100px;
-  width: 250px;
+  top: 25px;
+  width: 260px;
 }
 
 .sidenav a {
   color: #fff;
   text-decoration: none;
+  font-size: large;
 }
 
 .sidenav-container li.nav-item {
-  height: 48px;
-  line-height: 48px;
+  height: 50px;
+  line-height: 50px;
 }
 
 .sidenav-container li.nav-item:hover,
 .sidenav-container li.nav-item.active {
-  background-color: #2945a8;
+  background-color: #242f67;
 }
 
 .md-icon {
@@ -65,10 +66,9 @@
 .nav-top {
   display: flex;
   position: relative;
-  top: 0;
+  top: 10%;
   height: 200px;
-  width: 250px;
-  display: flex;
+  width: 260px;
 }
 
 .nav-bottom {
@@ -83,4 +83,51 @@
   width: 60px;
   background-color: #2945a8;
   border-color: #2945a8;
+}
+
+.usernav {
+  width: 260px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.nav-item-title {
+  display: inline-block;
+  width: 260px;
+  color: #fff;
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+  height: 24px;
+}
+
+.nav-item-subtitle {
+  display: inline-block;
+  width: 260px;
+  color: #fff;
+  font-weight: normal;
+  text-align: center;
+  height: 24px;
+}
+
+.page-title {
+  display: inline-block;
+  width: 260px;
+  color: rgb(255, 161, 20);
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  height: 24px;
+  font-family: Georgia;
+}
+
+.page-subtitle {
+  display: inline-block;
+  width: 260px;
+  color: rgb(255, 180, 20);
+  font-size: large;
+  font-weight: normal;
+  text-align: center;
+  height: 24px;
+  font-family: Georgia;
 }

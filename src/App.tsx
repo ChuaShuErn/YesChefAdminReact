@@ -11,11 +11,16 @@ import PreparationStepsForm from './components/PreparationStepsForm';
 import AdminDashboard from './components/AdminDashboard';
 import LabelsDropDownForm from './components/DifficultyDropDownForm';
 import CuisineTypeCheckboxForm from './components/TypeCheckboxForm';
+import MenuBar from './components/menubar/MenuBar';
+
 
 export default function App() {
   return (
     <BrowserRouter>
 
+    <div className='mainblock'>
+
+      <MenuBar/>
       <HeaderComponent />
       <br />
       <Routes>
@@ -32,7 +37,7 @@ export default function App() {
       <br />
 
       <FooterComponent />
-
+</div>
     </BrowserRouter>
 
   )

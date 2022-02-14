@@ -18,7 +18,7 @@ export default class Dashboard extends Component {
                       <Row>
 
                           <Col sm="12" md="12" lg="6">
-                              <strong>Ouput Performance Analytics</strong>
+                              <strong>Portfolio Performance</strong>
 
                               <div className="card linechart">
                                   <div className="card-mid">
