@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 
 import './styles/menubar.css'
 import './styles/dashboardpage.css'
+import './styles/commonlayout.css'
 
 ReactDOM.render(
   <React.StrictMode>

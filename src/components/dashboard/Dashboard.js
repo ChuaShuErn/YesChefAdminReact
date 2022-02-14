@@ -23,14 +23,17 @@ export default class Dashboard extends Component {
                               <div className="card linechart">
                                   <div className="card-mid">
                                       <div className="data-container">
+
                                         <div className="current-data">
                                             <p className="stat">Total Views</p>
                                             <p className="stat-data views">466</p>
                                         </div>
+
                                         <div className="previous-data">
                                             <p className="stat">Total Bookmarks</p>
                                             <p className="stat-data bookmarks">137</p>
-                                      </div>
+                                        </div>
+
                                      </div>
                                   </div>
 
@@ -38,31 +41,25 @@ export default class Dashboard extends Component {
                               </div>
                           </Col>
     
-                          <Col sm="12" md="6" lg="3">
+                          <Col sm="12" md="8" lg="3">
                             <strong>Recipe Cuisine Breakdown</strong>
                                 <div className="card pie">
-                                    <div className="card-top">
-                                    </div>
+                                        <div className="card-mid">
+                                            <div className="data-container">
+                                                <div className="previous-data">
+                                                    <p className="stat">Top Cuisine</p>
+                                                    <p className="stat-data bookmarks">Thai(39%)</p>
+                                                </div>
 
-                                <div className="pie-wrapper">
-                                    <div className="pie-center">
-                                        <div className="cuisine-stats">
-                                        <p className="stat">Total Recipes</p>
-                                        <p><span className="stat-data">180</span></p>
-                                        </div>
+                                            </div>
                                     </div>
                                     <PieCharts primColor="#4562ec"/>
+
                                 </div>
 
-                                <div className="data-container">
-                                    <div className="gross-data">
-                                        <p className="stat">Most Popular</p> <p className="stat-data gross">Thai (39%)</p>
-                                    </div>
-                                </div> 
+
+
    
-
-
-                            </div>
                           </Col>
     
                       </Row>

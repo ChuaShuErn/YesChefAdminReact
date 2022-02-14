@@ -13,7 +13,7 @@ export default class LineCharts extends React.Component{
 	      {day: 'Sun', Views: 99, Bookmarks: 34}
 		];
 		return(
-		  <ResponsiveContainer width="100%" height={300}>
+		  <ResponsiveContainer width="90%" height={300}>
 			  <LineChart data={data}>
 				  <CartesianGrid stroke="#dcdfe2" strokeDasharray="3 3"/>
 					<XAxis dataKey="day" stroke="#949494 " tick={{fontSize: 12,fontWeight: 800}}/>

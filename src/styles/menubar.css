@@ -3,7 +3,7 @@
   position: fixed;
   height: 100%;
   max-height: 100%;
-  background-color: #4657ac;
+  background-color: #0d1954;
   overflow: hidden;
   transition: all 1s;
   top: 0;
@@ -32,7 +32,7 @@
 
 .sidenav-container li.nav-item:hover,
 .sidenav-container li.nav-item.active {
-  background-color: #242f67;
+  background-color: #3d456a;
 }
 
 .md-icon {
@@ -113,21 +113,21 @@
 .page-title {
   display: inline-block;
   width: 260px;
-  color: rgb(255, 161, 20);
+  color: rgb(255, 117, 37);
   font-size: xx-large;
   font-weight: bold;
   text-align: center;
   height: 24px;
-  font-family: Georgia;
+  font-family: "Franklin Gothic Medium";
 }
 
 .page-subtitle {
   display: inline-block;
   width: 260px;
-  color: rgb(255, 180, 20);
+  color: rgb(255, 117, 37);
   font-size: large;
   font-weight: normal;
   text-align: center;
   height: 24px;
-  font-family: Georgia;
+  font-family: "Franklin Gothic Medium";
 }

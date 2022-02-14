@@ -1,3 +1,47 @@
-.mainblock {
-  margin-left: 260px;
+.dashboard-indent {
+  margin-left: 25px;
+}
+
+p.stat {
+  font-weight: 700;
+  color: #6a8291;
+  margin-top: 10px;
+  margin-bottom: -4px;
+}
+
+.stat-data {
+  font-size: 1.5em;
+  letter-spacing: 2px;
+}
+
+.stat-data.views {
+  color: #406ae2;
+}
+
+.stat-data.bookmarks,
+.stat-data.cuisine,
+.stat-data.online {
+  color: #ef7f17;
+}
+
+.card.linechart .previous-data {
+  margin-left: 40px;
+}
+
+.data-container {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
+
+.card.pie .data-container {
+  display: flex;
+  align-items: center;
+}
+
+.card-mid {
+  display: flex;
+  align-self: center;
+  align-items: center;
 }

@@ -15,10 +15,12 @@ export default function AdminDashboard() {
       <LeftMenuBar/>
 
 
-        <h4> <strong>Admin Dashboard </strong>  </h4>
+        <div className="dashboard-indent">
 
-        <Dashboard/>
+          <h4> <strong>Admin Dashboard </strong>  </h4>
 
+          <Dashboard/>
+        </div>
 
     </div>
 
