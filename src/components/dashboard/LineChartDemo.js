@@ -12,7 +12,7 @@ export default function LineCharts() {
 	      {day: '7 Feb', Users: 4},
 		  {day: '8 Feb', Users: 8},
 	      {day: '9 Feb', Users: 9},
-	      {day: '10 Feb', Users: 4},
+	      {day: '10 Feb', Users: 5},
 	      {day: '11 Feb', Users: 8},
 	      {day: '12 Feb', Users: 5},
 	      {day: '13 Feb', Users: 3},
@@ -61,8 +61,8 @@ export default function LineCharts() {
 				</defs>
 				
 				<Area yAxisId="right" type="monotone" dataKey="Views per User" stroke="#4F7942" fill="#AFE1AF"  strokeWidth="1" fillOpacity={0.3}/>
-				<Bar yAxisId="right" dataKey="New Users" barSize={30} fill="#ef7f17" />
-				<Line yAxisId="left" type="monotone" dataKey="Total Users" stroke="#4562ec" strokeWidth="2.5"/>
+				<Bar yAxisId="right" dataKey="New Users" barSize={30} fill="#4562ec" />
+				<Line yAxisId="left" type="monotone" dataKey="Total Users" stroke="#e64400" strokeWidth="2.5"/>
 				
 			</ComposedChart >
 		</ResponsiveContainer>

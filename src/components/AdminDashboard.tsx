@@ -55,7 +55,7 @@ export default function AdminDashboard() {
 
         <div className="dashboard-indent">
 
-          <h4> <strong>Admin Dashboard </strong>  </h4>
+          <h2> <strong>Admin Dashboard </strong>  </h2>
 
           <Dashboard/>
         </div>
