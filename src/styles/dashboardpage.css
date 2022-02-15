@@ -22,10 +22,22 @@ p.stat {
 .stat-data.cuisine,
 .stat-data.online {
   color: #ef7f17;
+  align-items: center;
+  align-self: center;
+  align-content: center;
 }
 
-.card.linechart .previous-data {
+.card.linechart {
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
+
+.previous-data {
   margin-left: 40px;
+  align-items: center;
+  align-self: center;
+  align-content: center;
 }
 
 .data-container {
