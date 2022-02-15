@@ -28,7 +28,7 @@ function DifficultyDropDownForm({difficultyLabel, setDifficultyLabel}:schema) {
 
     return (
         <div>
-            <h1>Difficulty Drop Down component</h1>
+            <h3>Choose Difficulty</h3>
             <FormControl >
             <InputLabel >Difficulty</InputLabel>
             <Select 
@@ -39,8 +39,8 @@ function DifficultyDropDownForm({difficultyLabel, setDifficultyLabel}:schema) {
             
             // onChange={handleDifficultyChange}
             >
-            <MenuItem value = {'Easy'}>Easy</MenuItem>
-            <MenuItem value = {'Medium'}>Medium</MenuItem>
+            <MenuItem value = {'Easy'}>Easy</MenuItem><br></br>
+            <MenuItem value = {'Medium'}>Medium</MenuItem><br></br>
             <MenuItem value = {'Advanced'}>Advanced</MenuItem>
             </Select>
             </FormControl>

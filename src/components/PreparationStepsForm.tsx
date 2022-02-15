@@ -42,7 +42,7 @@ const PreparationStepsForm = ({prepStepField,onPrepStepFieldChange}: {
 
     return (
         <Container>
-            <h1>PreparationStepsForm</h1>
+            <h3>Preparation Steps</h3>
             
             {prepStepField.map((inputField, index) => (
                 <div key={index}>

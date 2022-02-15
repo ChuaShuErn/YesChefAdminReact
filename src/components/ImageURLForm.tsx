@@ -114,6 +114,7 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
 
 
                 <h1>New Local Images</h1>
+                
                 <Grid container spacing={2}>
                     {
                         localImages.map((imgObj, index) =>
@@ -159,7 +160,12 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
                     onChange={onFileChange}
                     style={{ display: "none" }}
                 />
+                 <h1>Difficulty Recommendation</h1>
+
+                
             </Stack>
+           
+            
 
         </Modal>
 

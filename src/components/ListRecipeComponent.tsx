@@ -5,13 +5,13 @@ import { RecipeType } from '../types';
 import { Stack,FormControl, InputLabel,Select,MenuItem, Pagination } from '@mui/material';
 
 
-
+const searchInstructions = "Search:  ";
 function ListRecipeComponent() {
 
     const [recipes, setRecipes] = useState<RecipeType[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [pageLength, setPageLength] = useState(100);
+    const [pageLength, setPageLength] = useState(20);
     const [pageNumber, setPageNumber] = useState(1);
 
 
@@ -65,6 +65,7 @@ function ListRecipeComponent() {
         <Stack direction="column" spacing={2} sx={{ flex: 1, overflow: 'hidden' }}>
 
             <Stack direction="row" justifyContent={'center'} alignItems="center" spacing={1}>
+                Search:&nbsp;
                 <input value={searchValue} onChange={e => setSearchValue(e.target.value)} />
                 <button onClick={() => setSearchValue('')}>Clear</button>
 
