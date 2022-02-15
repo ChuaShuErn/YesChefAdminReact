@@ -3,6 +3,7 @@ import {Select,MenuItem, FormControl, InputLabel, makeStyles} from '@mui/materia
 import Unstable_TrapFocus from '@mui/base/Unstable_TrapFocus';
 import RecipeService from '../services/RecipeService';
 
+
 interface schema {
     courseTypeLabel: string;
     setCourseTypeLabel: React.Dispatch<React.SetStateAction<
@@ -25,7 +26,7 @@ function CourseTypeLabelForm({courseTypeLabel, setCourseTypeLabel}:schema) {
 
     return (
         <div>
-            <h1>Course Type component</h1>
+            <h3>Choose Course Type</h3>
             <FormControl >
             <InputLabel >Course Type</InputLabel>
             <Select 
@@ -37,14 +38,14 @@ function CourseTypeLabelForm({courseTypeLabel, setCourseTypeLabel}:schema) {
             
             // onChange={handleDifficultyChange}
             >
-            <MenuItem value = {'Appetizers'}>Appetizers</MenuItem>
-            <MenuItem value = {'Bakery Goods'}>Bakery Goods</MenuItem>
-            <MenuItem value = {'Breakfast'}>Breakfast</MenuItem>
-            <MenuItem value = {'Desserts'}>Desserts</MenuItem>
-            <MenuItem value = {'Dinner'}>Dinner</MenuItem>
-            <MenuItem value = {'Drinks'}>Drinks</MenuItem>
-            <MenuItem value = {'Lunch'}>Lunch</MenuItem>
-            <MenuItem value = {'Sides'}>Sides</MenuItem>
+            <MenuItem value = {'Appetizers'}>Appetizers</MenuItem><br></br>
+            <MenuItem value = {'Bakery Goods'}>Bakery Goods</MenuItem><br></br>
+            <MenuItem value = {'Breakfast'}>Breakfast</MenuItem><br></br>
+            <MenuItem value = {'Desserts'}>Desserts</MenuItem><br></br>
+            <MenuItem value = {'Dinner'}>Dinner</MenuItem><br></br>
+            <MenuItem value = {'Drinks'}>Drinks</MenuItem><br></br>
+            <MenuItem value = {'Lunch'}>Lunch</MenuItem><br></br>
+            <MenuItem value = {'Sides'}>Sides</MenuItem><br></br>
             <MenuItem value = {'Snacks'}>Snacks</MenuItem>
             </Select>
             </FormControl>

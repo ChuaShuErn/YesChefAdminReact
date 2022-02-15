@@ -27,7 +27,7 @@ const NutritionForm = ({ nutritionField, setNutritionField }: INutritionFormProp
     return (
 
         <Container>
-            <h1>NutritionForm</h1>
+            <h3>Nutrition Details</h3>
             <div>
                 {
                     //.map function builds a Dictionary?

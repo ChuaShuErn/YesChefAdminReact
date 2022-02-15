@@ -28,7 +28,7 @@ const IngredientForm = ({ inputFields, setInputFields }: IIngredientFormProps) =
     return (
 
         <Container>
-            <h1>IngredientForm</h1>
+            <h3>Ingredients</h3>
             <div>
                 {
                     //.map function builds a Dictionary?

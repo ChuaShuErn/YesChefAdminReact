@@ -21,6 +21,8 @@ function CreateRecipeComponent() {
         recipeId
     });
 
+    // TODO: setDifficultyRecommendation const
+
 
     //Step Fields
     const [inputFields, setInputFields] = useState([
@@ -147,6 +149,7 @@ function CreateRecipeComponent() {
                     shouldShow: true,
                     recipeId: data.id       
                 })
+                // TODO: setDifficultyRecommendation
             } catch (err) {
                 console.error(err)
             }
@@ -155,7 +158,7 @@ function CreateRecipeComponent() {
         else {
             try {
                 await RecipeService.updateRecipe(recipeId, recipe);
-
+                // TODO: setDifficultyRecommendation
                 setImageModalDetails({
                     shouldShow: true,
                     recipeId       
@@ -175,7 +178,7 @@ function CreateRecipeComponent() {
             <div className="container">
                 <div className="row">
 
-                    <h3 className="text-center">Create New Recipe Form</h3>
+                    <h1 className="text-center">{!recipeId ? "Creating a New Recipe!" : 'Updating a Recipe!'}</h1>
                     <div className="card-body">
                         <form onSubmit={saveRecipe}>
                             <div className="form-group">
@@ -204,7 +207,7 @@ function CreateRecipeComponent() {
                                     value={prepTime} onChange={changeprepTimeHandler} />
                             </div>
 
-                            <h1>Uploaded Images</h1>
+                            <h3>Uploaded Images</h3>
                             {imageURLField.length == 0 ?
                                         <p>No Images have been uploaded yet</p>:
                                     
@@ -223,7 +226,7 @@ function CreateRecipeComponent() {
                             </Grid>}
                             
                             
-
+                            {/*To put Difficulty Tag Recommender*/}
                             <ImageURLForm
                                 imageModalDetails={imageModalDetails}
                                 setImageModalDetails={setImageModalDetails}
