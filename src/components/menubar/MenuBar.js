@@ -32,8 +32,8 @@ export default class MenuBar extends React.Component {
 
         <div className="usernav">
           <Link to="/profile">
-            <div className="nav-item-title">Gabriel Alpin</div>
-            <div className="nav-item-subtitle">Member since Dec 2021</div>
+            <div className="nav-item-title">Gabriel Chua Al-Pinz</div>
+            <div className="nav-item-subtitle">Yes Chef Administrator</div>
             </Link>
         </div>
 

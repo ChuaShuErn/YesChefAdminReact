@@ -57,3 +57,28 @@ p.stat {
   align-self: center;
   align-items: center;
 }
+
+.recipe-name {
+  font-weight: 700;
+  color: #406ae2;
+}
+
+.recipe-cuisine {
+  font-size: medium;
+  font-weight: 300;
+  color: #6a8291;
+}
+
+.recipe-rating {
+  font-family: cursive;
+  font-size: larger;
+  font-weight: 600;
+  color: rgb(255, 117, 37);
+}
+
+.recipe-views {
+  font-family: cursive;
+  font-size: larger;
+  font-weight: 600;
+  color: rgb(47, 128, 81);
+}
