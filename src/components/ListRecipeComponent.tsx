@@ -70,6 +70,7 @@ function ListRecipeComponent() {
 
 
             </Stack>
+            <br></br>
             {content}
             <Stack
                 direction="row"

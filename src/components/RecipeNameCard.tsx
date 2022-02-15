@@ -39,33 +39,24 @@ const RecipeNameCard = ({ imageURL, name, courseType, difficulty,id }: schema) =
       onError={({ currentTarget }) => {
           currentTarget.onerror = null;
           currentTarget.src = "https://yeschefbucket.s3.ap-southeast-1.amazonaws.com/pork_rice.jpg";
-        }} alt="img alt text" style={{ borderRadius:40, width: 300, height: 300 }} />
+        }} alt="img alt text" style={{ borderRadius:40, width: 150, height: 150 }} />
         <div className={classes.container__text}> 
-        <div className={classes.h1}> {name} </div>
-        <div className={classes.h1}>{courseType}</div>
+        <div className={classes.body} > {name} </div>
+        {/* <div className={classes.body}>{courseType}</div> */}
+        </div>
+
         <div className={classes.banner} style = {{backgroundColor: getBackgroundColour(difficulty)}}>{difficulty}</div>
-        
 
 
-        <button className={classes.btn2} onClick ={deleteRecipe}>
+        <button className={classes.delete} onClick ={deleteRecipe}>
         Delete
         </button>
 
-        <button className={classes.btn}>
+        <button className={classes.update}>
         <Link to={'/updateRecipe/' + id}>
           Update
         </Link>
         </button>
-
-        
-        
-        </div>
-        
-
-
-
-
-
     </div>
   );
 };
