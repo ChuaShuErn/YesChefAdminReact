@@ -171,7 +171,12 @@ function CreateRecipeComponent() {
 
         }
     }
+    //Difficulty Recommendation change
+     const handleNewDifficultyRecommendation = (event:string[]) => {
+         setDifficultyLabel(event);
+     }
 
+    
 
     return (
         <div>
@@ -230,6 +235,7 @@ function CreateRecipeComponent() {
                             <ImageURLForm
                                 imageModalDetails={imageModalDetails}
                                 setImageModalDetails={setImageModalDetails}
+                                
 
                             />
 

@@ -80,6 +80,16 @@ class RecipeService{
         return axios.get(RECIPE_API_BASE_URL + "findByCuisineType/" + cuisineType)
     }
 
+    //get Difficulty Recommendation
+    getDifficultyRecommendation(id:string){
+        return axios.get(RECIPE_API_BASE_URL+ "getDifficultyPrediction/"+ id)
+    }
+
+    //put Difficulty Recommendation
+    putDifficultyRecommendation(id:string, difficulty:string[]){
+        return axios.put(RECIPE_API_BASE_URL + "putDifficultyRecommendation/" + id, difficulty)
+    }
+
     
 }
 

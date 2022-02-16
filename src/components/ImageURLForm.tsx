@@ -8,6 +8,7 @@ import { Remove, Add, CloudUpload } from '@material-ui/icons';
 import { Button, Grid, Stack, Modal } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import RecipeService from '../services/RecipeService';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -27,7 +28,11 @@ interface schema {
 
 
 }
-export default function ImageURLForm({ imageModalDetails, setImageModalDetails }: schema) {
+
+
+
+
+export default function ImageURLForm({ imageModalDetails, setImageModalDetails }: schema, handleNewDifficultyRecommendation:string[]) {
     const [localImages, setLocalImages] = useState<localImagesArrayType>([]);
 
     const imagesSelectRef = useRef<HTMLInputElement>(null);
@@ -76,12 +81,48 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
 
             await RecipeService.uploadImageFile(imageModalDetails.recipeId, formData, config)
             alert('Successfully uploaded files')
-            onClose()
+            // onClose()
 
         } catch (err) {
             console.error(err)
         }
     }
+
+    //Difficulty Recommendation portion
+    //set variable and state
+    const [difficultyRecommendation, setDifficultyRecommendation] = useState<string[]>([]);
+    //Configure API
+    const showDifficultyRecommendation = async () =>{
+        if (!imageModalDetails.recipeId) return alert('Receipe Id not provided');
+        
+        try{
+            const {data} = await RecipeService.getDifficultyRecommendation(imageModalDetails.recipeId as string);
+            console.log(data);
+            setDifficultyRecommendation(data);
+
+        }
+        catch(err){
+            console.error(err)
+        }
+
+    }
+    //call api to save new difficulty tag
+    const useRecommendedDifficulty = async() =>{
+        //call recipeservice for method
+        console.log(imageModalDetails.recipeId);
+        console.log(difficultyRecommendation);
+        await RecipeService.putDifficultyRecommendation(imageModalDetails.recipeId as string, difficultyRecommendation);
+        alert('succesfully implemented recommended difficulty');
+
+    }
+
+    //navigation
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/';
+        navigate(path);
+    }
+
 
     return (
 
@@ -161,6 +202,11 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
                     style={{ display: "none" }}
                 />
                  <h1>Difficulty Recommendation</h1>
+                <Button onClick={showDifficultyRecommendation}> getDifficultyPrediction</Button>
+                <h1>Your recommended difficulty is: {difficultyRecommendation}</h1>
+                <Button onClick={useRecommendedDifficulty}>Use Recommended Difficulty</Button>
+                <Button>Stick to my previous choice</Button>
+                <Button onClick={routeChange}>View All Recipes</Button>
 
                 
             </Stack>
