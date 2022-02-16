@@ -40,6 +40,11 @@ export default class Dashboard extends Component {
                                         </div>
 
                                         <div className="previous-data">
+                                            <p className="stat">Weekly Usership Growth</p>
+                                            <p className="stat-data bookmarks" style={{color: "orange"}}>+27.1%</p>
+                                        </div>
+
+                                        <div className="previous-data">
                                             <p className="stat">Total Views</p>
                                             <p className="stat-data views" style={{color: "red"}}>443</p>
                                         </div>
@@ -47,6 +52,12 @@ export default class Dashboard extends Component {
                                         <div className="previous-data">
                                             <p className="stat">Views Per User</p>
                                             <p className="stat-data bookmarks" style={{color: "green"}}>6.6</p>
+                                        </div>
+
+                                        
+                                        <div className="previous-data">
+                                            <p className="stat">Weekly Engagement Growth</p>
+                                            <p className="stat-data bookmarks" style={{color: "darkviolet"}}>+12.8%</p>
                                         </div>
 
                                      </div>
@@ -74,11 +85,11 @@ export default class Dashboard extends Component {
 
                                             <div className="current-data">
                                                 <p className="stat">Total Recipe Count</p>
-                                                <p className="stat-data bookmarks">43</p>
+                                                <p className="stat-data bookmarks">70</p>
                                             </div>
                                                 <div className="previous-data">
                                                     <p className="stat">Top Cuisine</p>
-                                                    <p className="stat-data views">Thai(37.1%)</p>
+                                                    <p className="stat-data views">Thai(20.6%)</p>
                                                 </div>
 
                                             </div>

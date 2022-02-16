@@ -3,8 +3,16 @@ import React from 'react';
 import { ResponsiveContainer,PieChart, Pie,Cell, Sector} from 'recharts';
 import { PureComponent } from 'react';
 
-	const data = [{name: 'Thai', value: 13}, {name: 'Vietnamese', value: 9}, {name: 'Korean', value: 3},  {name: 'Japanese', value: 10}];
-	const COLORS = ['#0088FE', '#FFBB28', '#00C49F', '#FF8042'];
+	const data = [
+		{name: 'Thai', value: 14}, 
+		{name: 'Vietnamese', value: 9}, 
+		{name: 'Korean', value: 3},  
+		{name: 'Japanese', value: 10},
+		{name: 'Chinese', value: 8}, 
+		{name: 'British', value: 5}, 
+		{name: 'Indian', value: 10}, 
+		{name: 'American', value: 9}, ];
+	const COLORS = ['#0088FE', '#FFBB28', '#00C49F', '#FF8042', '#8510d8', '#FFC0CB','#1b25c6', '#FF3232'];
 
 
 const renderActiveShape = (props) => {
