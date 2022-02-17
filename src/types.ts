@@ -1,3 +1,5 @@
+import { StringLiteralLike } from "typescript";
+
 export interface RecipeType {
     id?: string;
     name: string; // search
@@ -47,3 +49,15 @@ export interface UploadRecipeType extends Omit<RecipeType, 'searchString' > {
 }
 
 export type distinctType = 'cuisineType' | 'techniqueType' | 'tagType'
+
+
+export interface cuisineDataType {
+    name: string;
+    value: number;
+}
+
+export interface recentRecipeType {
+    date: string;
+    name: string;
+    cuisine: string;
+}

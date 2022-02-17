@@ -20,7 +20,7 @@ const LineChartCuisine = (props) => {
 				<Legend verticalAlign="top" height={40}/>
 				{
 					cuisine_id.map((id) => {
-						return (<Line type="monotone" dataKey={cuisine_names[id]} stroke={props.colors[id]} strokeWidth="2"/>)
+						return (<Line type="monotone" key={'cuisinelinechart_${id}'} dataKey={cuisine_names[id]} stroke={props.colors[id]} strokeWidth="2"/>)
 					})
 				}
 				

@@ -19,10 +19,7 @@ export default function LineCharts(props) {
 
 		data[i]["Views per User"] = (data[i]["Views"] / data[i]["Total Users"]).toPrecision(2)
 
-
 	}
-
-	
 
 	return(
 		<ResponsiveContainer width="100%" height={320}>
@@ -33,9 +30,6 @@ export default function LineCharts(props) {
 				<YAxis yAxisId="left" tick={{fontSize: 12}} stroke="black" orientation="right" />
 				<Tooltip/>
 				<Legend verticalAlign="top" height={50}/>
-
-				
-				
 				<Bar yAxisId="right" dataKey="New Users" barSize={30} fill="#413ea0" />
 				<Line yAxisId="right" type="monotone" dataKey="Views per User" stroke="#4F7942" strokeWidth="2.5" strokeDasharray="3 3"/>
 				<Line yAxisId="left" type="monotone" dataKey="Total Users" stroke="#e64400" strokeWidth="2.5"/>

@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import LineCharts from './LineChartDemo';
 import PieCharts from './PieChartDemo';
 import LineChartCuisine from './LineChartCuisine';
+import RecentRecipeCard from './RecentRecipeCard';
 import { Container, Row, Col} from 'reactstrap';
-
-
-
 
 
 class Dashboard extends Component {
@@ -237,51 +235,10 @@ class Dashboard extends Component {
                           <Col sm="12" md="8" lg="4">
                             <strong>Recently Uploaded Recipes </strong>
                             <div className="card pie">
-                            
-                            <div className="recipe-container">
-
-                                <table>
-                                    <tr>   
-
-                                        <td width="85%">
-                                            <span className="recipe-name">Valentine Chocolate Cake</span>
-                                            <p className="recipe-cuisine">American</p>
-                                        </td>
-            
-                                        <td> <span className="recipe-date">14 Feb </span></td>
-                                    </tr>
-
-                                    <tr>   
-
-                                        <td>
-                                            <span className="recipe-name">Dan Dan Mian</span>
-                                            <p className="recipe-cuisine">Chinese</p>
-                                        </td>
-            
-                                        <td> <span className="recipe-date">11 Feb </span></td>
-                                    </tr>
-
-                                    <tr>   
-
-                                        <td>
-
-                                            <span className="recipe-name">Crispy Thosai</span>
-                                            <p className="recipe-cuisine">Indian</p>
-                                        </td>
-            
-                                        <td> <span className="recipe-date">09 Feb </span></td>
-
-                                    </tr>
-
-                                </table>
-
-
-
+                                <div className="recipe-container">
+                                    <RecentRecipeCard/>
+                                </div>
                             </div>
-               
-
-                        </div>
-
                           </Col>
     
                       </Row>
