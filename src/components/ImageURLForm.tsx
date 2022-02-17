@@ -3,12 +3,11 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import { Remove, Add, CloudUpload } from '@material-ui/icons';
-
-
 import { Button, Grid, Stack, Modal } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import RecipeService from '../services/RecipeService';
 import { useNavigate } from 'react-router-dom';
+import { SettingsPowerRounded } from '@mui/icons-material';
 
 
 
@@ -29,10 +28,7 @@ interface schema {
 
 }
 
-
-
-
-export default function ImageURLForm({ imageModalDetails, setImageModalDetails }: schema, handleNewDifficultyRecommendation:string[]) {
+export default function ImageURLForm({ imageModalDetails, setImageModalDetails }: schema) {
     const [localImages, setLocalImages] = useState<localImagesArrayType>([]);
 
     const imagesSelectRef = useRef<HTMLInputElement>(null);
@@ -61,7 +57,9 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
         }
     };
 
-    const onClose = () => setImageModalDetails((prevState: any) => ({ ...prevState, shouldShow: false }))
+    const onClose = () => {
+        
+        setImageModalDetails((prevState: any) => ({ ...prevState, shouldShow: false }))}
 
 
     const uploadToS3Bucket = async () => {
@@ -112,9 +110,24 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
         console.log(imageModalDetails.recipeId);
         console.log(difficultyRecommendation);
         await RecipeService.putDifficultyRecommendation(imageModalDetails.recipeId as string, difficultyRecommendation);
-        alert('succesfully implemented recommended difficulty');
+        alert('Difficulty set to: ' + difficultyRecommendation);
 
     }
+
+    //Difficulty Recommendation Colour
+    const getColour = (value:string[]) =>{
+        let colour;
+        if (value[0] == 'Easy'){
+          colour = '#4aa336';
+        }
+        if (value[0] == 'Medium'){
+          colour = '#e37610';
+        }
+        if (value[0] == 'Advanced'){
+          colour = '#c41837';
+        }
+        return colour;
+      }
 
     //navigation
     let navigate = useNavigate();
@@ -127,8 +140,16 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
     return (
 
         <Modal
+            
             open={imageModalDetails.shouldShow}
-            onClose={onClose}
+            
+            onClose={(_,reason) =>{
+                if (reason!=="backdropClick" && reason!=="escapeKeyDown"){
+                onClose()
+            }
+            }}
+            
+            
             sx={{
                 display: "flex",
                 alignItems: "center",
@@ -153,8 +174,9 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
                 }}
             >
 
-
-                <h1>New Local Images</h1>
+            <h1 style={{textAlign:'center'}}>Last few steps...</h1>
+            <h2>Upload some images!</h2>
+                <h3>New Local Images</h3>
                 
                 <Grid container spacing={2}>
                     {
@@ -201,12 +223,33 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
                     onChange={onFileChange}
                     style={{ display: "none" }}
                 />
-                 <h1>Difficulty Recommendation</h1>
-                <Button onClick={showDifficultyRecommendation}> getDifficultyPrediction</Button>
-                <h1>Your recommended difficulty is: {difficultyRecommendation}</h1>
-                <Button onClick={useRecommendedDifficulty}>Use Recommended Difficulty</Button>
-                <Button>Stick to my previous choice</Button>
-                <Button onClick={routeChange}>View All Recipes</Button>
+                 <h3 style={{textAlign:'center'}}>We can analyze your recipe to give you an accurate Difficulty prediction!</h3>
+                <br></br>
+                <br></br>
+                <Button 
+                style={{maxWidth:'300px', display: "flex", margin: '0 auto'}}         
+                variant="contained"
+                onClick={showDifficultyRecommendation}> Click Here to Predict the Difficulty</Button>
+                <h3 style={{textAlign:'center'}}>We recommend your set your difficulty as: </h3>
+                <h1 style={{textAlign:'center', color: getColour(difficultyRecommendation)}}>{difficultyRecommendation}</h1>
+                <br></br>
+                <br></br>
+
+                    
+                    <Button 
+                        style={{maxWidth:'300px', display: "flex", margin: '0 auto'}}
+                        
+                        variant="outlined"
+                        onClick={useRecommendedDifficulty}
+                    >
+                        Use Recommended Difficulty
+                    </Button>
+                    <br></br>
+
+                <Button 
+                style={{width:'270px', display: "flex", margin: '0 auto'}}
+                
+                variant="contained" onClick={routeChange}>DONE</Button>
 
                 
             </Stack>

@@ -42,9 +42,9 @@ function CreateRecipeComponent() {
     //Text Fields
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [noOfServings, setNoOfServings] = useState(0);
+    const [noOfServings, setNoOfServings] = useState(2);
     const [calories, setCalories] = useState(0);
-    const [prepTime, setprepTime] = useState(0);
+    const [prepTime, setprepTime] = useState(300);
 
     //Checkbox Forms
     const [cuisineTypes, setCuisineTypes] = useState<string[]>([]);
@@ -208,7 +208,7 @@ function CreateRecipeComponent() {
                             </div>
                             <div className="form-group">
                                 <label>Preparation Time (in Seconds) </label>
-                                <input placeholder="Preparation Time in Seconds" type="number" name="Calories" className="form-control"
+                                <input placeholder="Preparation Time in Seconds" type="number" name="Preparation Time" className="form-control"
                                     value={prepTime} onChange={changeprepTimeHandler} />
                             </div>
 
