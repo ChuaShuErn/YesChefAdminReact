@@ -41,7 +41,7 @@ export default function AdminDashboard() {
 
   };
 
-
+/*
   type groupType = {
       [key: string]: RecipeType[]
   }
@@ -74,8 +74,16 @@ export default function AdminDashboard() {
     }
   }
 
+*/
 
+  const cuisine_data = [
+    {name: "Thai", value: 9},
+    {name: "Japanese", value: 8},
+    {name: "Korean", value: 8}
+  ]
 
+  const total_recipe_count = 70;
+  const most_common_cuisine = "American";
     
   const cuisine_views = [
     {day: '8 Feb', Thai: 8, Vietnamese: 9, Korean: 7, Japanese: 10, Chinese: 12, British: 11, Indian: 8, American: 14},
