@@ -63,35 +63,6 @@ export default function RecentRecipeCard() {
 
 
         </table>
-        /*
-            <table>
-                <tr>   
-                    <td width="80%">
-                        <span className="recipe-name">{recentRecipes[0].name}</span>
-                        <p className="recipe-cuisine">{recentRecipes[0].cuisine}</p>
-                    </td>
-                    <td> <span className="recipe-date">{recentRecipes[0].date} </span></td>
-                </tr>
-
-                <tr>   
-                    <td width="80%">
-                        <span className="recipe-name">{recentRecipes[1].name}</span>
-                        <p className="recipe-cuisine">{recentRecipes[1].cuisine}</p>
-                    </td>
-                    <td> <span className="recipe-date">{recentRecipes[1].date} </span></td>
-                </tr>
-
-                <tr>   
-                    <td width="80%">
-                        <span className="recipe-name">{recentRecipes[2].name}</span>
-                        <p className="recipe-cuisine">{recentRecipes[2].cuisine}</p>
-                    </td>
-                    <td> <span className="recipe-date">{recentRecipes[2].date} </span></td>
-                </tr>
-
-            </table>
-            */
-
                     
 	);
 
