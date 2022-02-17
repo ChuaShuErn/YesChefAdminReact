@@ -1,23 +1,9 @@
 import React from 'react';
 import { ResponsiveContainer, ComposedChart , Bar, Line, Area, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
-export default function LineCharts() {
+export default function LineCharts(props) {
 	
-	const data = [
-	      {day: '2 Feb', Users: 3},
-	      {day: '3 Feb', Users: 6},
-	      {day: '4 Feb', Users: 2},
-	      {day: '5 Feb', Users: 2},
-	      {day: '6 Feb', Users: 3},
-	      {day: '7 Feb', Users: 4},
-		  {day: '8 Feb', Users: 8},
-	      {day: '9 Feb', Users: 9},
-	      {day: '10 Feb', Users: 5},
-	      {day: '11 Feb', Users: 8},
-	      {day: '12 Feb', Users: 5},
-	      {day: '13 Feb', Users: 3},
-	      {day: '14 Feb', Users: 9}
-	];
+	const data = props.data;
 
 	for (var i = 0; i < data.length; i++) {
 
@@ -30,11 +16,6 @@ export default function LineCharts() {
 		else {
 			data[i]["Total Users"] = data[i]["Users"] + data[i-1]["Total Users"] 
 		}		
-
-		data[i]["Views"] = Math.round(Math.random()*30*i) + i + data[i]["Total Users"]*3
-		
-
-
 
 		data[i]["Views per User"] = (data[i]["Views"] / data[i]["Total Users"]).toPrecision(2)
 
@@ -53,15 +34,10 @@ export default function LineCharts() {
 				<Tooltip/>
 				<Legend verticalAlign="top" height={50}/>
 
-				<defs>
-					<linearGradient id="Views per User" x1="0" y1="0" x2="0" y2="1">
-					<stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-					<stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-					</linearGradient>
-				</defs>
 				
-				<Area yAxisId="right" type="monotone" dataKey="Views per User" stroke="#4F7942" fill="#AFE1AF"  strokeWidth="1" fillOpacity={0.3}/>
-				<Bar yAxisId="right" dataKey="New Users" barSize={30} fill="#4562ec" />
+				
+				<Bar yAxisId="right" dataKey="New Users" barSize={30} fill="#413ea0" />
+				<Line yAxisId="right" type="monotone" dataKey="Views per User" stroke="#4F7942" strokeWidth="2.5" strokeDasharray="3 3"/>
 				<Line yAxisId="left" type="monotone" dataKey="Total Users" stroke="#e64400" strokeWidth="2.5"/>
 				
 			</ComposedChart >

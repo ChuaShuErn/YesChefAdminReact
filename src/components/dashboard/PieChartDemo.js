@@ -1,19 +1,7 @@
 import { Tooltip } from '@mui/material';
 import React from 'react';
 import { ResponsiveContainer,PieChart, Pie,Cell, Sector} from 'recharts';
-import { PureComponent } from 'react';
-
-	const data = [
-		{name: 'Thai', value: 14}, 
-		{name: 'Vietnamese', value: 9}, 
-		{name: 'Korean', value: 3},  
-		{name: 'Japanese', value: 10},
-		{name: 'Chinese', value: 8}, 
-		{name: 'British', value: 5}, 
-		{name: 'Indian', value: 10}, 
-		{name: 'American', value: 9}, ];
-	const COLORS = ['#0088FE', '#FFBB28', '#00C49F', '#FF8042', '#8510d8', '#FFC0CB','#1b25c6', '#FF3232'];
-
+import { PureComponent, Component } from 'react';
 
 const renderActiveShape = (props) => {
 	const RADIAN = Math.PI / 180;
@@ -63,10 +51,16 @@ const renderActiveShape = (props) => {
 };
 
 
-export default class PieCharts extends PureComponent {
-	state = {
-		activeIndex: 0,
-	};
+class PieCharts extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			activeIndex: 0,
+		};
+		this.data = props.data;
+		this.colors = props.colors
+	}
+
 
 	onPieEnter = (data, index) => {
 		this.setState({
@@ -80,10 +74,10 @@ export default class PieCharts extends PureComponent {
 				<Pie
 					activeIndex={this.state.activeIndex}
 					activeShape={renderActiveShape}
-					data={data}
+					data={this.data}
 					cx={200}
 					cy={130}
-					innerRadius={70}
+					innerRadius={65}
 					outerRadius={100}
 					fill="#8884d8"
 					dataKey="value"
@@ -91,11 +85,13 @@ export default class PieCharts extends PureComponent {
 				>
 
 				{
-						data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-					}
+					this.data.map((entry, index) => <Cell key={`cell-${index}`} fill={this.colors[index % this.colors.length]} />)
+				}
 
 					</Pie>
 			</PieChart>
 		);
 	}
 }
+
+export default PieCharts;
