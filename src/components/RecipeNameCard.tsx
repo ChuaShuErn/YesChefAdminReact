@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import classes from './RecipeNameCard.module.css';
 import { Link } from 'react-router-dom';
 import RecipeService from'../services/RecipeService';
 import Button from '@mui/material';
+
 
 interface schema {
   id: string;
@@ -27,12 +28,17 @@ const RecipeNameCard = ({ imageURL, name, courseType, difficulty,id }: schema) =
     return colour;
   }
 
-  function deleteRecipe(){
-    console.log("delete pressed");
-    console.log(id);
+  function deleteRecipe() {
+
     RecipeService.deleteRecipe(id);
     window.location.reload();
+    alert("Recipe Deleted")
+    console.log("delete pressed")
+    console.log(id);
+    
   }
+
+
   return (
     <div className={classes.container}>
       <img src={imageURL.slice(-1)[0] ?? "https://yeschefbucket.s3.ap-southeast-1.amazonaws.com/pork_rice.jpg"} 
@@ -48,7 +54,8 @@ const RecipeNameCard = ({ imageURL, name, courseType, difficulty,id }: schema) =
         <div className={classes.banner} style = {{backgroundColor: getBackgroundColour(difficulty)}}>{difficulty}</div>
 
 
-        <button className={classes.delete} onClick ={deleteRecipe}>
+        <button className={classes.delete} onClick = {()=> {if(window.confirm('Are you sure to delete this recipe?')){
+        {{deleteRecipe()}}}}}>
         Delete
         </button>
 

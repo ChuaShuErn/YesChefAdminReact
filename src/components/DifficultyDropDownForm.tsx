@@ -1,6 +1,6 @@
 import React from 'react';
 import {Select,MenuItem, FormControl, InputLabel, makeStyles} from '@mui/material';
-import Unstable_TrapFocus from '@mui/base/Unstable_TrapFocus';
+
 
 interface schema {
     difficultyLabel: string;
@@ -33,7 +33,7 @@ function DifficultyDropDownForm({difficultyLabel, setDifficultyLabel}:schema) {
             <InputLabel >Difficulty</InputLabel>
             <Select 
             // label = "Difficulty"
-            value = {difficultyLabel || 'Easy'}
+            value = {difficultyLabel || ['Easy']}
             style = {{width:200}}
             onChange = {onChange}
             
