@@ -10,7 +10,6 @@ class Dashboard extends Component {
     constructor(props) {
 		super(props);
 		this.cuisine_data = props.cuisine_data;
-		this.cuisine_views = props.cuisine_views;
         this.usership_data = props.usership_data;
         this.total_recipe_count = props.total_recipe_count;
         this.most_common_cuisine = props.most_common_cuisine;
@@ -105,7 +104,7 @@ class Dashboard extends Component {
                           <Col sm="12" md="9" lg="7">
                           <strong>Daily Total Views By Cuisine </strong>
                                 <div className="card linechart">
-                                    <LineChartCuisine data={this.cuisine_views} cuisines={this.cuisine_data} colors = {this.cuisine_colors}/>
+                                    <LineChartCuisine cuisines={this.cuisine_data} colors = {this.cuisine_colors}/>
                                 </div>
                           </Col>
                       </Row>

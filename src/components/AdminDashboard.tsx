@@ -4,7 +4,7 @@ import ExamplePieChart from './dashboard/PieChartDemo';
 import LeftMenuBar from './menubar/MenuBar';
 import Dashboard from './dashboard/Dashboard';
 import React, { useState, useEffect, useCallback } from 'react';
-import { RecipeType, cuisineDataType, recentRecipeType } from '../types';
+import { RecipeType, cuisineDataType, cuisineViewsType } from '../types';
 
 
 export default function AdminDashboard() {
@@ -123,18 +123,6 @@ export default function AdminDashboard() {
 
 
 
-
-  const cuisine_views = [
-    {day: '8 Feb', Thai: 8, Vietnamese: 9, Korean: 7, Japanese: 10, Chinese: 12, British: 11, Indian: 8, American: 14},
-    {day: '9 Feb', Thai: 9, Vietnamese: 11, Korean: 5, Japanese: 9, Chinese: 14, British: 12, Indian: 9, American: 12},
-    {day: '10 Feb', Thai: 7, Vietnamese: 13, Korean: 12, Japanese: 11, Chinese: 13, British: 13, Indian: 11, American: 13},
-    {day: '11 Feb', Thai: 9, Vietnamese: 11, Korean: 13, Japanese: 12, Chinese: 9, British: 11, Indian: 10, American: 10},
-    {day: '12 Feb', Thai: 10, Vietnamese: 14, Korean: 14, Japanese: 14, Chinese: 15, British: 15, Indian: 12, American: 14},
-    {day: '13 Feb', Thai: 12, Vietnamese: 13, Korean: 11, Japanese: 15, Chinese: 18, British: 16, Indian: 13, American: 14},
-    {day: '14 Feb', Thai: 11, Vietnamese: 15, Korean: 16, Japanese: 17, Chinese: 6, British: 12, Indian: 12, American: 16}
-];
-
-
   const usership_data = [
     {day: '1 Feb', Users: 1, Views: 2},
     {day: '2 Feb', Users: 3, Views: 10},
@@ -158,7 +146,6 @@ export default function AdminDashboard() {
     console.log(cuisine_counts)
     content = <Dashboard 
                 cuisine_data={cuisine_counts} 
-                cuisine_views={cuisine_views} 
                 usership_data={usership_data} 
                 total_recipe_count = {total_recipe_count}
                 most_common_cuisine = {most_common_cuisine}/>

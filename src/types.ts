@@ -73,3 +73,16 @@ export interface topRatedRecipeType {
     name: string;
     cuisine: string;
 }
+
+export interface usershipType {
+    date: string;
+    users: string;
+    views: string;
+}
+
+export interface cuisineViewsType {
+    date: string;
+    cuisine: string;
+    views: string;
+}
+
