@@ -18,7 +18,6 @@ export default function AdminDashboard() {
 
   let content = <p>Found no recipes</p>;
 
-
   useEffect(() => {
       fetchCuisineCountHandler()
   }, [])
@@ -121,6 +120,9 @@ export default function AdminDashboard() {
   }
 
 */   
+
+
+
 
   const cuisine_views = [
     {day: '8 Feb', Thai: 8, Vietnamese: 9, Korean: 7, Japanese: 10, Chinese: 12, British: 11, Indian: 8, American: 14},

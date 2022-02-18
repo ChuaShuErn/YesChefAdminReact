@@ -14,8 +14,6 @@ class Dashboard extends Component {
         this.usership_data = props.usership_data;
         this.total_recipe_count = props.total_recipe_count;
         this.most_common_cuisine = props.most_common_cuisine;
-        
-
 	}
 
     cuisine_colors = ['#0088FE', '#FFBB38', '#00C49F', '#FF8042', '#8510d8', '#FFC0CB','#1b25c6', '#FF3232'];
@@ -125,7 +123,7 @@ class Dashboard extends Component {
                             <strong>Top Rated Recipes</strong>
                                 <div className="card pie">
                                     <div className="recipe-container">
-                                        <RecentRecipeCard urlMapping="getRecentRecipes"/>
+                                        <RecentRecipeCard urlMapping="getTopRatedRecipes"/>
                                     </div>
                                 </div>
                           </Col>
@@ -134,7 +132,7 @@ class Dashboard extends Component {
                             <strong>Most Viewed Recipes</strong>
                                 <div className="card pie">
                                     <div className="recipe-container">
-                                        <RecentRecipeCard urlMapping="getRecentRecipes"/>
+                                        <RecentRecipeCard urlMapping="getMostViewedRecipes"/>
                                     </div>
                                 </div>
                           </Col>

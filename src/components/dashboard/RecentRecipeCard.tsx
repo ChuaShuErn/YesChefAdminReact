@@ -28,15 +28,19 @@ const RecentRecipeCard = (props : { urlMapping: string; }) => {
                 throw new Error('Something went wrong!');
             }
 
+            
+
             if (props.urlMapping == "getRecentRecipes"){
                 const data = await response.json() as recentRecipeType[];
                 setRecentRecipes(data)
             }
             else if (props.urlMapping == "getMostViewedRecipes") {
+                console.log("entered most viewed recipes");
                 const data = await response.json() as mostViewedRecipeType[];
                 setMostViewedRecipes(data)
             }
             else if (props.urlMapping == "getTopRatedRecipes") {
+                console.log("entered top rated recipes");
                 const data = await response.json() as topRatedRecipeType[];
                 setTopRatedRecipes(data)
             }
@@ -53,15 +57,17 @@ const RecentRecipeCard = (props : { urlMapping: string; }) => {
 
     var content = <p>Found no recipes</p>;
 
-    if (recentRecipes.length > 0)
+    if (recentRecipes.length > 0 || mostViewedRecipes.length > 0 || topRatedRecipes.length > 0 )
     {
         if (props.urlMapping == "getRecentRecipes"){
             content = <RecentRecipeEntry recentRecipes={recentRecipes}/>
         }
-        else if (props.urlMapping == "getMostViewedRecipes") {
+        if (props.urlMapping == "getMostViewedRecipes") {
+            console.log("entered get most viewed rendering view");
             content = <MostViewedRecipeEntry mostViewedRecipes={mostViewedRecipes}/>
         }
-        else if (props.urlMapping == "getTopRatedRecipes") {
+        if (props.urlMapping == "getTopRatedRecipes") {
+            console.log("entered get top rated rendering view");
             content = <TopRatedRecipeEntry topRatedRecipes={topRatedRecipes}/>
         }
             
