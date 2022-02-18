@@ -1,10 +1,10 @@
 import React from 'react';
-import { recentRecipeType } from '../../types';
+import { mostViewedRecipeType } from '../../types';
 import { useState, useEffect, useCallback } from 'react';
 
 
-const RecentRecipeEntry = (props: { recentRecipes: recentRecipeType[]; }) => {
-    const recipes = props.recentRecipes;
+const MostViewedRecipeEntry = (props: { mostViewedRecipes: mostViewedRecipeType[]; }) => {
+    const recipes = props.mostViewedRecipes;
 
     return(
         <table>
@@ -14,7 +14,7 @@ const RecentRecipeEntry = (props: { recentRecipes: recentRecipeType[]; }) => {
                     <span className="recipe-name">{recipes[0].name}</span>
                     <p className="recipe-cuisine">{recipes[0].cuisine}</p>
                 </td >
-                <td width="20%"> <span className="recipe-date">{recipes[0].date} </span></td>
+                <td> <span className="recipe-views">{recipes[0].views} </span></td>
             </tr>
 
             <tr>   
@@ -22,7 +22,7 @@ const RecentRecipeEntry = (props: { recentRecipes: recentRecipeType[]; }) => {
                     <span className="recipe-name">{recipes[1].name}</span>
                     <p className="recipe-cuisine">{recipes[1].cuisine}</p>
                 </td>
-                <td> <span className="recipe-date">{recipes[1].date} </span></td>
+                <td> <span className="recipe-views">{recipes[0].views} </span></td>
             </tr>
 
             <tr>   
@@ -30,9 +30,9 @@ const RecentRecipeEntry = (props: { recentRecipes: recentRecipeType[]; }) => {
                     <span className="recipe-name">{recipes[2].name}</span>
                     <p className="recipe-cuisine">{recipes[2].cuisine}</p>
                 </td>
-                <td> <span className="recipe-date">{recipes[2].date} </span></td>
+                <td> <span className="recipe-views">{recipes[0].views} </span></td>
             </tr>
     </table>
     )
 }
-export default RecentRecipeEntry;
+export default MostViewedRecipeEntry;

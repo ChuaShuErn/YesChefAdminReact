@@ -23,7 +23,6 @@ const LineChartCuisine = (props) => {
 						return (<Line type="monotone" key={'cuisinelinechart_${id}'} dataKey={cuisine_names[id]} stroke={props.colors[id]} strokeWidth="2"/>)
 					})
 				}
-				
 			</ComposedChart >
 		</ResponsiveContainer>
 		

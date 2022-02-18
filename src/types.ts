@@ -61,3 +61,15 @@ export interface recentRecipeType {
     name: string;
     cuisine: string;
 }
+
+export interface mostViewedRecipeType {
+    views: number;
+    name: string;
+    cuisine: string;
+}
+
+export interface topRatedRecipeType {
+    rating: number;
+    name: string;
+    cuisine: string;
+}

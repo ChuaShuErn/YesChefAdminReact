@@ -1,11 +1,14 @@
 import React from 'react';
-import { recentRecipeType } from '../../types';
+import { recentRecipeType, topRatedRecipeType, mostViewedRecipeType } from '../../types';
 import { useState, useEffect, useCallback } from 'react';
 import RecentRecipeEntry from './RecentRecipeEntry';
+import MostViewedRecipeEntry from './MostViewedRecipeEntry';
+import TopRatedRecipeEntry from './TopRatedRecipeEntry';
 
-export default function RecentRecipeCard() {
+const RecentRecipeCard = (props : { urlMapping: string; }) => {
     
-    
+    const [topRatedRecipes, setTopRatedRecipes] = useState<topRatedRecipeType[]>([]);
+    const [mostViewedRecipes, setMostViewedRecipes] = useState<mostViewedRecipeType[]>([]);
     const [recentRecipes, setRecentRecipes] = useState<recentRecipeType[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -19,15 +22,26 @@ export default function RecentRecipeCard() {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch('http://localhost:8090/api/v1/getRecentRecipes');
+            const fetchUrl = 'http://localhost:8090/api/v1/' + props.urlMapping;
+            const response = await fetch(fetchUrl);
             if (!response.ok) {
                 throw new Error('Something went wrong!');
             }
-            const data = await response.json() as recentRecipeType[];
-            console.log(data);
 
-            setRecentRecipes(data)
-            console.log(recentRecipes)
+            if (props.urlMapping == "getRecentRecipes"){
+                const data = await response.json() as recentRecipeType[];
+                setRecentRecipes(data)
+            }
+            else if (props.urlMapping == "getMostViewedRecipes") {
+                const data = await response.json() as mostViewedRecipeType[];
+                setMostViewedRecipes(data)
+            }
+            else if (props.urlMapping == "getTopRatedRecipes") {
+                const data = await response.json() as topRatedRecipeType[];
+                setTopRatedRecipes(data)
+            }
+
+
         } catch (error: any) {
             setError(error.message);
         }
@@ -41,7 +55,16 @@ export default function RecentRecipeCard() {
 
     if (recentRecipes.length > 0)
     {
-        content = <RecentRecipeEntry recentRecipes={recentRecipes}/>
+        if (props.urlMapping == "getRecentRecipes"){
+            content = <RecentRecipeEntry recentRecipes={recentRecipes}/>
+        }
+        else if (props.urlMapping == "getMostViewedRecipes") {
+            content = <MostViewedRecipeEntry mostViewedRecipes={mostViewedRecipes}/>
+        }
+        else if (props.urlMapping == "getTopRatedRecipes") {
+            content = <TopRatedRecipeEntry topRatedRecipes={topRatedRecipes}/>
+        }
+            
     }
     
 
@@ -60,11 +83,11 @@ export default function RecentRecipeCard() {
 
         <table>
             {content}
-
-
         </table>
                     
 	);
 
 
 }
+
+export default RecentRecipeCard;
