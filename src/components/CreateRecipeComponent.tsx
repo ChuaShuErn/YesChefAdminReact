@@ -47,7 +47,7 @@ function CreateRecipeComponent() {
     const [prepTime, setprepTime] = useState(300);
 
     //Checkbox Forms
-    const [cuisineTypes, setCuisineTypes] = useState<string[]>([]);
+    const [cuisineTypes, setCuisineTypes] = useState<string[]>(['Chinese']);
     const [techniques, setTechniques] = useState<string[]>([]);
     const [tags, setTags] = useState(['']);
 

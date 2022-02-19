@@ -31,11 +31,11 @@ export default function App() {
     <div className='mainblock'>
     
       
-      <HeaderComponent />
+      
       {location ==='/'?null:<MenuBar/>}
       <br />
       <Routes>
-        {}
+        
         <Route path="/" element={<LoginComponent />}  />
         {/* <Route path="/ingredientForm" element={<IngredientForm />} /> */}
         

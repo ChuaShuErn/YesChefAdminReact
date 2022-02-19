@@ -44,7 +44,7 @@ export default class MenuBar extends React.Component {
 
         <Nav vertical>
           <NavItem>
-            <Link to="/adminDashboard">
+            <Link to={"/adminDashboard"}>
                <div className="md-icon">
                <AiOutlineDashboard size = {25}/>
               </div>
@@ -54,7 +54,7 @@ export default class MenuBar extends React.Component {
 
 
           <NavItem>
-            <Link to="/">
+            <Link to={"/recipes"}>
                <div className="md-icon">
                <IoPizzaOutline size = {25}/>
               </div>
@@ -64,7 +64,7 @@ export default class MenuBar extends React.Component {
 
 
             <NavItem>
-            <Link to="/createRecipe">
+            <Link to={"/createRecipe"}>
                <div className="md-icon">
                <HiOutlinePencilAlt size = {25}/>
               </div>
@@ -75,7 +75,7 @@ export default class MenuBar extends React.Component {
          
 
           <NavItem>
-            <Link to="/logout">
+            <Link to={"/"}>
               <div className="md-icon">
                 <HiOutlineLogout size = {25}/>
               </div>

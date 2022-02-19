@@ -7,6 +7,7 @@ import { Stack,FormControl, InputLabel,Select,MenuItem, Pagination } from '@mui/
 
 const searchInstructions = "Search:  ";
 function ListRecipeComponent() {
+    
 
     const [recipes, setRecipes] = useState<RecipeType[]>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -62,6 +63,7 @@ function ListRecipeComponent() {
     }
 
     return (
+        
         <Stack direction="column" spacing={2} sx={{ flex: 1, overflow: 'hidden' }}>
 
             <Stack direction="row" justifyContent={'center'} alignItems="center" spacing={1}>
