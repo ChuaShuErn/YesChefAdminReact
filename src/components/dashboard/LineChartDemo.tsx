@@ -98,7 +98,7 @@ export default function LineCharts(props: {data: usershipType[]}) {
 			</div>
 
 			<div className="previous-data">
-				<p className="stat">Two-week New Users</p>
+				<p className="stat">14-Day Total New Users</p>
 				<p className="stat-data bookmarks" style={{color: "blue"}}>{allnewusers}</p>
 			</div>
 

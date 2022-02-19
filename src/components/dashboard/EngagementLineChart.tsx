@@ -97,12 +97,12 @@ export default function EngagementLineChart(props: {data: usershipType[]}) {
             <div className="data-container">
 
             <div className="previous-data">
-                <p className="stat">Total New Views</p>
+                <p className="stat">14-Day Total Views</p>
                 <p className="stat-data views" style={{color: "#006400"}}>{allviews.allViews}</p>
             </div>
 
             <div className="previous-data">
-                <p className="stat">Average Views/User</p>
+                <p className="stat">14-Day Average Views/User</p>
                 <p className="stat-data bookmarks" style={{color: "#e64400"}}>{averageviewsperuser}</p>
             </div>
 
