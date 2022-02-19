@@ -10,7 +10,7 @@ const RecentRecipeEntry = (props: { recentRecipes: recentRecipeType[]; }) => {
         <table>
         
             <tr>   
-                <td width="80%">
+                <td width="450px">
                     <span className="recipe-name">{recipes[0].name}</span>
                     <p className="recipe-cuisine">{recipes[0].cuisine}</p>
                 </td >

@@ -72,17 +72,6 @@ export default class MenuBar extends React.Component {
             </Link>
             </NavItem>
 
-   
-
-          <NavItem>
-            <Link to="/profile">
-              <div className="md-icon">
-                <IoPersonOutline size = {25} style={{strokeWidth: "10"}}/>
-              </div>
-              Profile
-            </Link>
-          </NavItem>
-
          
 
           <NavItem>
