@@ -1,12 +1,13 @@
 import { ResponsiveContainer, ComposedChart , Bar, Line, Area, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import React, { useState, useEffect, useCallback } from 'react';
-import { cuisineDataType, cuisineViewsType } from '../../types';
+import { cuisineDataType, cuisineViewsType, cuisineNameViewsType } from '../../types';
+import CuisineViewsSubchart from './CuisineViewsSubchart';
 
 const LineChartCuisine = (props: {cuisines: cuisineDataType[], colors: string[]}) => {
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
-	const [cuisine_views, setCuisineViews]= useState<cuisineViewsType[]>([]);
+	const [cuisine_views, setCuisineViews]= useState<cuisineNameViewsType[]>([]);
 
 	useEffect(() => {
 		fetchCuisineViews()
@@ -22,7 +23,7 @@ const LineChartCuisine = (props: {cuisines: cuisineDataType[], colors: string[]}
 			if (!response.ok) {
 				throw new Error('Something went wrong!');
 			}
-			const data = await response.json() as cuisineViewsType[];
+			const data = await response.json() as cuisineNameViewsType[];
 	  
 			setCuisineViews(data);
 	  
@@ -33,7 +34,13 @@ const LineChartCuisine = (props: {cuisines: cuisineDataType[], colors: string[]}
 	  
 	  };
 	  
+
+
+	  
 	  if (cuisine_views.length > 0) {
+		content = <CuisineViewsSubchart cuisines={props.cuisines} colors={props.colors} cuisine_views={cuisine_views}/>
+
+
 	  }
 	
 	  if (error) {
@@ -46,29 +53,11 @@ const LineChartCuisine = (props: {cuisines: cuisineDataType[], colors: string[]}
 
 
 	  
-	var cuisine_names : string[] = []
-	const cuisine_id = []
-	for (let i = 0; i < props.cuisines.length; i++) {
-		cuisine_names.push(props.cuisines[i].name);
-		cuisine_id.push(i);
-	}
-	
-
 
 	return(
 		<ResponsiveContainer width="100%" height={375}>
-			<ComposedChart  data={cuisine_views}>
-				<CartesianGrid stroke="#dcdfe2" strokeDasharray="3 3"/>
-				<XAxis dataKey="day" tick={{fontSize: 12}} stroke="black"/>
-				<YAxis  tick={{fontSize: 12}} stroke="black"/>
-				<Tooltip/>
-				<Legend verticalAlign="top" height={40}/>
-				{
-					cuisine_id.map((id) => {
-						return (<Line type="monotone" key={'cuisinelinechart_${id}'} dataKey={cuisine_names[id]} stroke={props.colors[id]} strokeWidth="2"/>)
-					})
-				}
-			</ComposedChart >
+
+			{content}
 		</ResponsiveContainer>
 		
 	);

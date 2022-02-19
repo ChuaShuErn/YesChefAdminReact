@@ -83,6 +83,21 @@ export interface usershipType {
 export interface cuisineViewsType {
     date: string;
     cuisine: string;
-    views: string;
+    views: number;
+}
+
+export interface cuisineNameViewsType {
+    day: string;
+    Japanese: number;
+    Vietnamese: number;
+    Chinese: number;
+    Indian: number;
+    Korean: number;
+    American: number;
+    Fusion: number;
+    British: number;
+    Taiwanese: number;
+    Thai: number;
+
 }
 
