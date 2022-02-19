@@ -75,10 +75,10 @@ class PieCharts extends Component {
 					activeIndex={this.state.activeIndex}
 					activeShape={renderActiveShape}
 					data={this.data}
-					cx={200}
+					cx={250}
 					cy={130}
 					innerRadius={65}
-					outerRadius={100}
+					outerRadius={120}
 					fill="#8884d8"
 					dataKey="value"
 					onMouseEnter={this.onPieEnter}

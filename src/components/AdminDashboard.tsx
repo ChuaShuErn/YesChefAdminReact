@@ -103,16 +103,11 @@ const fetchUsershipDataHandler = async () => {
       }
       const data = await response.json() as usershipType[];
       console.log(data);
-
-
       setUsershipData(data);
-
 
   } catch (error: any) {
       setError(error.message);
   }
-  setIsLoading(false);
-
 };  
 
 
