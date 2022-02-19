@@ -70,15 +70,15 @@ class PieCharts extends Component {
 
 	render() {
 		return (
-			<PieChart width={400} height={300}>
+			<PieChart width={550} height={300}>
 				<Pie
 					activeIndex={this.state.activeIndex}
 					activeShape={renderActiveShape}
 					data={this.data}
-					cx={250}
+					cx={225}
 					cy={130}
 					innerRadius={65}
-					outerRadius={120}
+					outerRadius={110}
 					fill="#8884d8"
 					dataKey="value"
 					onMouseEnter={this.onPieEnter}
