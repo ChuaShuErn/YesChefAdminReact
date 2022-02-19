@@ -6,6 +6,7 @@ export default function EngagementLineChart(props: {data: usershipType[]}) {
 	
 	const usership_data = props.data;
 	var data : usershipDerivedType[] = [];
+	var totaluserbase : number = usership_data[0].totaluserbase;
 
 
 	for (var i = 0; i < usership_data.length; i++) {
@@ -32,8 +33,19 @@ export default function EngagementLineChart(props: {data: usershipType[]}) {
 		}
 
 	}
-	
 
+	
+	var allnewusers = 0;
+	for (var i = 0; i < data.length; i++) {
+		allnewusers = Math.round(data[i]["newusers"]) + Math.round(allnewusers)
+	}
+
+	var alloldusers = totaluserbase - allnewusers;
+	for (var i = 0; i < data.length; i++) {
+		data[i]["totalusers"] = data[i]["totalusers"]+alloldusers;
+		data[i]["viewsperuser"] = Math.round((data[i]["views"] / data[i]["totalusers"])*10)/10;
+
+	}
 
     var allviews: totalViewsCountType = {allViews: 0}
 	var lastweekviews: totalViewsCountType = {allViews: 0}

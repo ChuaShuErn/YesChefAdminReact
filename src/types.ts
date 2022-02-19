@@ -84,6 +84,7 @@ export interface usershipType {
     date: string;
     users: string;
     views: number;
+    totaluserbase: number;
 }
 
 export interface usershipDerivedType {

@@ -17,7 +17,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState(null);
   const [usership_data, setUsershipData] = useState<usershipType[]>([]);
 
-  let content = <p>Found no recipes</p>;
+  let content = <p>Loading Dashboard...</p>;
 
   useEffect(() => {
       fetchCuisineCountHandler()
