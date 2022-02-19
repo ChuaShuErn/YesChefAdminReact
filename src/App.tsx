@@ -16,6 +16,9 @@ import LoginComponent from './components/login/LoginComponent';
 import { Login } from '@mui/icons-material';
 import { Navbar } from 'reactstrap';
 import {Location} from 'history';
+import AdminDashboardContainer from './components/AdminDashboardContainer';
+import CreateRecipeComponentContainer from './components/CreateRecipeComponentContainer';
+import ListRecipeComponentContainer from './components/ListRecipeComponentContainer';
 
 
 export default function App() {
@@ -28,33 +31,26 @@ export default function App() {
     
     <BrowserRouter>
     
-    <div className='mainblock'>
-    
-      
-      
-      {location ==='/'?null:<MenuBar/>}
+
       <br />
       <Routes>
         
         <Route path="/" element={<LoginComponent />}  />
         {/* <Route path="/ingredientForm" element={<IngredientForm />} /> */}
         
-          
-          <Route path="/recipes" element={<ListRecipeComponent />} />
-          <Route path="/createRecipe" element={<CreateRecipeComponent />} />
-          <Route path="/updateRecipe/:id" element={<CreateRecipeComponent />} />
+          <Route path="/recipes" element={<ListRecipeComponentContainer />} />
+          <Route path="/createRecipe" element={<CreateRecipeComponentContainer />} />
+          <Route path="/updateRecipe/:id" element={<CreateRecipeComponentContainer />} />
           {/* <Route path="/preparationStepsForm" element={<PreparationStepsForm />} /> */}
-          <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route path="/adminDashboard" element={<AdminDashboardContainer />} />
         
           <Route path="/loginComponent" element={<LoginComponent />} />
           
-        
 
       </Routes>
       <br />
-
       <FooterComponent />
-    </div>
+
     </BrowserRouter>
     
 
