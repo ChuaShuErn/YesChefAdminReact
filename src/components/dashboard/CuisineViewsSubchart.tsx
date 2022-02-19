@@ -10,11 +10,6 @@ const CuisineViewsSubchart = (props: {cuisines: cuisineDataType[], colors: strin
 	for (let i = 0; i < props.cuisines.length; i++) {
         var this_cuisine_name = props.cuisines[i].name;
 		cuisine_names.push(this_cuisine_name);
-        for (let j = 0; j < data.length; j++) {
-            console.log(data[j])
-
-
-        }
 		cuisine_id.push(i);
 	}
 

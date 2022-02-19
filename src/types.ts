@@ -77,8 +77,23 @@ export interface topRatedRecipeType {
 export interface usershipType {
     date: string;
     users: string;
-    views: string;
+    views: number;
 }
+
+export interface usershipType {
+    date: string;
+    users: string;
+    views: number;
+}
+
+export interface usershipDerivedType {
+    date: string;
+    views: number;
+    newusers: number;
+    totalusers: number;
+    viewsperuser: number;
+}
+
 
 export interface cuisineViewsType {
     date: string;
@@ -99,5 +114,10 @@ export interface cuisineNameViewsType {
     Taiwanese: number;
     Thai: number;
 
+}
+
+
+export interface totalViewsCountType {
+    allViews: number
 }
 

@@ -4,6 +4,8 @@ import PieCharts from './PieChartDemo';
 import LineChartCuisine from './LineChartCuisine';
 import RecentRecipeCard from './RecentRecipeCard';
 import { Container, Row, Col} from 'reactstrap';
+import UsershipChartCard from './UsershipChartCard';
+import EngagementChartCard from './EngagementChartCard';
 
 
 class Dashboard extends Component {
@@ -26,52 +28,18 @@ class Dashboard extends Component {
 
                       <Row>
 
-                          <Col lg="12">
-                              <strong>Usership and Engagement Growth</strong>
-                              <div className="card linechart">
-                                  <p></p>
-                                  <LineCharts data = {this.usership_data}/>
-                                  <div className="card-mid">
-                                      <div className="data-container">
-
-                                        <div className="current-data">
-                                            <p className="stat">Total Users</p>
-                                            <p className="stat-data views">67</p>
-                                        </div>
-
-                                        <div className="previous-data">
-                                            <p className="stat">New Users</p>
-                                            <p className="stat-data bookmarks" style={{color: "blue"}}>55</p>
-                                        </div>
-
-                                        <div className="previous-data">
-                                            <p className="stat">Weekly Usership Growth</p>
-                                            <p className="stat-data bookmarks" style={{color: "orange"}}>+27.1%</p>
-                                        </div>
-
-                                        <div className="previous-data">
-                                            <p className="stat">Total Views</p>
-                                            <p className="stat-data views" style={{color: "red"}}>443</p>
-                                        </div>
-
-                                        <div className="previous-data">
-                                            <p className="stat">Views Per User</p>
-                                            <p className="stat-data bookmarks" style={{color: "green"}}>6.6</p>
-                                        </div>
-
-                                        
-                                        <div className="previous-data">
-                                            <p className="stat">Weekly Engagement Growth</p>
-                                            <p className="stat-data bookmarks" style={{color: "darkviolet"}}>+12.8%</p>
-                                        </div>
-
-                                     </div>
-                                  </div>
-
-                              </div>
+                          <Col lg="6">
+                              <strong>Two-week Usership Growth</strong>
+                              <UsershipChartCard data = {this.usership_data}/>
                           </Col>
     
-    
+
+                          <Col lg="6">
+                              <strong>Two-week Engagement Growth</strong>
+                              <EngagementChartCard data = {this.usership_data}/>
+
+                          </Col>
+
                       </Row>
     
                   </Container>
