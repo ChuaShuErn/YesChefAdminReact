@@ -1,6 +1,7 @@
 import React from 'react';
 import { ResponsiveContainer, ComposedChart , Bar, Line, Area, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import { usershipType, usershipDerivedType, totalViewsCountType } from '../../types';
+import AxisLabel from './AxisLabel';
 
 export default function LineCharts(props: {data: usershipType[]}) {
 	
@@ -67,9 +68,13 @@ export default function LineCharts(props: {data: usershipType[]}) {
 	}
 
 
+	
+
+
 
 	return(
 		<div> 
+		
 		<ResponsiveContainer width="100%" height={320}>
 			<ComposedChart  data={data}>
 				<CartesianGrid stroke="#dcdfe2" strokeDasharray="3 3"/>
@@ -89,7 +94,7 @@ export default function LineCharts(props: {data: usershipType[]}) {
 
 			<div className="current-data">
 				<p className="stat">Total Userbase</p>
-				<p className="stat-data views">{totaluserbase}</p>
+				<p className="stat-data views" style={{color: "#e64400"}} >{totaluserbase}</p>
 			</div>
 
 			<div className="previous-data">
@@ -99,7 +104,7 @@ export default function LineCharts(props: {data: usershipType[]}) {
 
 			<div className="previous-data">
 				<p className="stat">Week-on-Week Usership Growth</p>
-				<p className="stat-data bookmarks" style={{color: "orange"}}>{usershipgrowth}%</p>
+				<p className="stat-data bookmarks" style={{color: "purple"}}>{usershipgrowth}%</p>
 			</div>
 
 			</div>

@@ -17,7 +17,7 @@ class Dashboard extends Component {
         this.most_common_cuisine = props.most_common_cuisine;
 	}
 
-    cuisine_colors = ['#0088FE', '#FFBB38', '#00C49F', '#FF8042', '#8510d8', '#FFC0CB','#1b25c6', '#FF3232', '#0088FE', '#FFBB38'];
+    cuisine_colors = ['#0088FE', '#FFBB38', '#00C49F', '#FF8042', '#8510d8', '#FFC0CB','#1b25c6', '#FF3232', '#006400', '#404040'];
 
     render() {
         return (

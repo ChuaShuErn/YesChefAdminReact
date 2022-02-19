@@ -71,14 +71,21 @@ p.stat {
 
 .recipe-rating {
   font-family: cursive;
-  font-size: larger;
+  font-size: normal;
   font-weight: 600;
   color: rgb(255, 117, 37);
 }
 
 .recipe-views {
   font-family: cursive;
-  font-size: larger;
+  font-size: normal;
   font-weight: 600;
   color: rgb(47, 128, 81);
+}
+
+.recipe-date {
+  font-family: cursive;
+  font-size: normal;
+  font-weight: 600;
+  color: rgb(129, 22, 216);
 }
