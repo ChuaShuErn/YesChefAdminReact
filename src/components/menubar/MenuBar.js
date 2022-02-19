@@ -19,6 +19,7 @@ export default class MenuBar extends React.Component {
   render() {
     
     return (
+      
       <div className={this.props.collapsed? 'sidenav-container collapsed': 'sidenav-container'}>
 
 
