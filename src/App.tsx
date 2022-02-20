@@ -7,7 +7,6 @@ import ListRecipeComponentContainer from './components/ListRecipeComponentContai
 
 export default function App() {
   
-  
   return (
     
     <BrowserRouter>
@@ -16,21 +15,14 @@ export default function App() {
       <br />
       <Routes>
         
-        <Route path="/" element={<LoginComponent />}  />
-        {/* <Route path="/ingredientForm" element={<IngredientForm />} /> */}
-        
+        <Route path="/" element={<LoginComponent />}  /> 
           <Route path="/recipes" element={<ListRecipeComponentContainer />} />
           <Route path="/createRecipe" element={<CreateRecipeComponentContainer />} />
           <Route path="/updateRecipe/:id" element={<CreateRecipeComponentContainer />} />
-          {/* <Route path="/preparationStepsForm" element={<PreparationStepsForm />} /> */}
           <Route path="/adminDashboard" element={<AdminDashboardContainer />} />
-        
           <Route path="/loginComponent" element={<LoginComponent />} />
-          
-
       </Routes>
-      <br />
-      
+      <br /> 
 
     </BrowserRouter>
     
