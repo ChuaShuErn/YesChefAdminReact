@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Component } from 'react';
-
 import RecipeService from '../services/RecipeService';
 import IngredientForm from './IngredientForm';
 import ImageURLForm from './ImageURLForm';
@@ -12,7 +11,7 @@ import CourseTypeLabelForm from './CourseTypeLabelForm';
 import NutritionForm from './NutritionForm';
 import TypeCheckboxForm from './TypeCheckboxForm';
 import { Stack, Grid } from '@mui/material';
-import { UserReviewInputField } from '../utils/UserReviewInputField';
+
 
 function CreateRecipeComponent() {
     const recipeId = useParams().id
@@ -54,7 +53,7 @@ function CreateRecipeComponent() {
 
 
     //Drop downs
-    const [difficultyLabel, setDifficultyLabel] = useState<string[]>([]);
+    const [difficultyLabel, setDifficultyLabel] = useState<string[]>(['Easy']);
     const [courseTypeLabel, setCourseTypeLabel] = useState('');
 
 

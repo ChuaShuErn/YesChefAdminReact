@@ -3,12 +3,6 @@ import RecipeService from '../services/RecipeService';
 import { distinctType } from '../types';
 import { Stack, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 
-
-
-
-
-
-
 interface schema {
     selectedOptions: string[];
     setSelectedOptions: (arg: any) => void;

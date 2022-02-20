@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import RecipeContainer from './RecipeContainer';
 import { RecipeType } from '../types';

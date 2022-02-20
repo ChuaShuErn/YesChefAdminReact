@@ -1,4 +1,3 @@
-
 import React from 'react';
 import CreateRecipeComponent from '../components/CreateRecipeComponent';
 import MenuBar from '../components/menubar/MenuBar';

@@ -1,6 +1,4 @@
 
-import ExampleLineChart from './dashboard/LineChartDemo';
-import ExamplePieChart from './dashboard/PieChartDemo';
 import LeftMenuBar from './menubar/MenuBar';
 import Dashboard from './dashboard/Dashboard';
 import React, { useState, useEffect, useCallback } from 'react';

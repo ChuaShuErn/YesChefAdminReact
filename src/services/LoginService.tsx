@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {UploadRecipeType, distinctType} from '../types';
+
 
 const LOGIN_API_BASE_URL = 'http://localhost:8090/api/v1/'
 

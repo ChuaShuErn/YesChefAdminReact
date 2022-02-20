@@ -3,7 +3,7 @@ import {Grid} from '@mui/material'
 import RecipeNameCard from './RecipeNameCard';
 import classes from './RecipeContainer.module.css';
 import {RecipeType} from '../types';
-import { RowingSharp } from '@material-ui/icons';
+
 // makes an array on many Recipe Components
 //purpose of this component is to map ALL the necessary Recipe components and put them into an Array of Recipes 
 // (we don't use for loop here)

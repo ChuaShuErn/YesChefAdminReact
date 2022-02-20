@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveButton from '@material-ui/icons/Remove';
-import AddButton from '@material-ui/icons/Add';
-import { v4 as uuidv4 } from 'uuid';
+
 
 export interface IIngredient {
     ingredient: string;

@@ -1,14 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
 import { Remove, Add, CloudUpload } from '@material-ui/icons';
 import { Button, Grid, Stack, Modal } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import RecipeService from '../services/RecipeService';
 import { useNavigate } from 'react-router-dom';
-import { SettingsPowerRounded } from '@mui/icons-material';
-
 
 
 type localImagesArrayType = {
@@ -132,7 +127,7 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
     //navigation
     let navigate = useNavigate();
     const routeChange = () =>{
-        let path = '/';
+        let path = '/recipes';
         navigate(path);
     }
 
@@ -190,30 +185,36 @@ export default function ImageURLForm({ imageModalDetails, setImageModalDetails }
                         )
                     }
                 </Grid>
+                <br></br>
+                <br></br>
 
                 <Button startIcon={<Add />}
                     variant="outlined"
+                    style = {{width:'350px', display: "flex", margin: '0 auto'}}
                     onClick={() => imagesSelectRef.current?.click()}
                 >
                     Select Image
                 </Button>
+                <br></br>
 
 
-                <Stack direction="row" spacing={2}>
+                {/* <Stack direction="row" spacing={2}>
                     <Button fullWidth startIcon={<Remove />}
                         variant="outlined"
                         onClick={onClose}
                     >
                         Cancel
                     </Button>
-                    <Button fullWidth startIcon={<CloudUpload />}
+                    
+
+                </Stack> */}
+                <Button  startIcon={<CloudUpload />}
+                        style = {{width:'350px', display: "flex", margin: '0 auto'}}
                         variant="outlined"
                         onClick={uploadToS3Bucket}
                     >
                         Upload
                     </Button>
-
-                </Stack>
 
                 <input
                     ref={imagesSelectRef}

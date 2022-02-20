@@ -1,8 +1,5 @@
 import React from 'react';
 import {Select,MenuItem, FormControl, InputLabel, makeStyles} from '@mui/material';
-import Unstable_TrapFocus from '@mui/base/Unstable_TrapFocus';
-import RecipeService from '../services/RecipeService';
-
 
 interface schema {
     courseTypeLabel: string;
